@@ -12,7 +12,12 @@ namespace FlashCards.MainPage
 {
     public partial class MainPage : UserControl
     {
-        private CardsSet _cardsSet = new CardsSet();
+        private CardsSet _cardsSet;
+        public CardsSet CardsSet
+        {
+            get { return _cardsSet; }
+            set { _cardsSet = value; }
+        }
         public MainPage()
         {
             InitializeComponent();
@@ -24,11 +29,11 @@ namespace FlashCards.MainPage
         private void DisplayCards()
         {
             cardsPanel.Controls.Clear();
-            foreach (CardItem card in _cardsSet.cards)
+            foreach (CardItem card in _cardsSet.Cards)
             {
                 CardListItem cardListItem = new CardListItem();
                 cardListItem.Card = card;
-                cardListItem.removeCard = _cardsSet.RemoveCard;
+                cardListItem.RemoveCard = _cardsSet.RemoveCard;
                 cardsPanel.Controls.Add(cardListItem);
 
             }
@@ -42,6 +47,13 @@ namespace FlashCards.MainPage
             txtTerm.Text = "";
             txtDefinition.Text = "";
             DisplayCards();
+        }
+
+        private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            lblDefinition.Enabled = true;
+            var learnPage1 = Parent.Controls.Find("learnPage1", true).FirstOrDefault() as LearnPage.LearnPage;
+            learnPage1.UpdateCardText();
         }
     }
 }

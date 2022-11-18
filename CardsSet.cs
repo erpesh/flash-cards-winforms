@@ -2,10 +2,16 @@
 
 namespace FlashCards
 {
-    class CardsSet
+    public class CardsSet
     {
         private string _filePath = "cards.txt";
-        public List<CardItem> cards = new List<CardItem>();
+        private const char _separator = '&';
+        private List<CardItem> _cards = new List<CardItem>();
+        public List<CardItem> Cards
+        {
+            get { return _cards; }
+            //set { _cards = value; }
+        }
 
         public CardsSet()
         {
@@ -20,30 +26,30 @@ namespace FlashCards
             List<string> cards = File.ReadAllLines(_filePath).ToList();
             foreach (string card in cards)
             {
-                var splitCard = card.Split(',');
+                var splitCard = card.Split(_separator);
                 var newCardItem = new CardItem();
                 newCardItem.Term = splitCard[0];
                 newCardItem.Definition = splitCard[1];
-                this.cards.Add(newCardItem);
+                this._cards.Add(newCardItem);
             }
         }
         private void WriteToFile()
         {
             List<string> stringCards = new List<string>();
-            foreach (CardItem card in cards)
+            foreach (CardItem card in _cards)
             {
-                stringCards.Add(card.Term + "," + card.Definition);
+                stringCards.Add(card.Term + _separator + card.Definition);
             }
             File.WriteAllLines(_filePath, stringCards);
         }
         public void AddCard(CardItem card)
         {
-            this.cards.Add(card);
+            _cards.Add(card);
             WriteToFile();
         }
         public void RemoveCard(CardItem card)
         {
-            this.cards.Remove(card);
+            _cards.Remove(card);
             WriteToFile();
         }
     }

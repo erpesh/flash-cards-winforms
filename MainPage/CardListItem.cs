@@ -13,6 +13,7 @@ namespace FlashCards.MainPage
     public partial class CardListItem : UserControl
     {
         private CardItem _card;
+        private Action<CardItem> _removeCard;
         public CardItem Card
         {
             get { return _card; }
@@ -23,15 +24,17 @@ namespace FlashCards.MainPage
                 lblDefinition.Text = value.Definition;
             }
         }
-        public Action<CardItem> removeCard;
+        public Action<CardItem> RemoveCard
+        {
+            set { _removeCard = value; }
+        }
         public CardListItem()
         {
             InitializeComponent();
-            _card = new CardItem();
         }
         private void Remove_Click(object sender, EventArgs e)
         {
-            removeCard(_card);
+            _removeCard(_card);
             this.Dispose();
         }
     }

@@ -87,10 +87,8 @@
             this.Controls.Add(this.btnLearnPage);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.headerBg);
-            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);
 
         }

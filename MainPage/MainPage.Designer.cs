@@ -87,6 +87,7 @@
             this.cardsPanel.Name = "cardsPanel";
             this.cardsPanel.Size = new System.Drawing.Size(390, 452);
             this.cardsPanel.TabIndex = 6;
+            this.cardsPanel.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.MainPage_ControlRemoved);
             // 
             // MainPage
             // 
