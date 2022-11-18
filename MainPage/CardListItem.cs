@@ -27,6 +27,7 @@ namespace FlashCards.MainPage
         public CardListItem()
         {
             InitializeComponent();
+            _card = new CardItem();
         }
         private void Remove_Click(object sender, EventArgs e)
         {
