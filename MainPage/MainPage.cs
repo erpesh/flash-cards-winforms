@@ -32,10 +32,10 @@ namespace FlashCards.MainPage
             foreach (CardItem card in _cardsSet.Cards)
             {
                 CardListItem cardListItem = new CardListItem();
+                cardListItem.MainPage = this;
                 cardListItem.Card = card;
                 cardListItem.RemoveCard = _cardsSet.RemoveCard;
                 cardsPanel.Controls.Add(cardListItem);
-
             }
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -48,12 +48,15 @@ namespace FlashCards.MainPage
             txtDefinition.Text = "";
             DisplayCards();
         }
-
+        public void UpdateLearnPage()
+        {
+            var learnPage1 = Parent.Controls.Find("learnPage1", true).FirstOrDefault() as LearnPage.LearnPage;
+            learnPage1.UpdateCardText();
+        }
         private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
         {
             lblDefinition.Enabled = true;
-            var learnPage1 = Parent.Controls.Find("learnPage1", true).FirstOrDefault() as LearnPage.LearnPage;
-            learnPage1.UpdateCardText();
+            UpdateLearnPage();
         }
     }
 }

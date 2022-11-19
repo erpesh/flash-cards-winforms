@@ -33,7 +33,7 @@ namespace FlashCards
                 this._cards.Add(newCardItem);
             }
         }
-        private void WriteToFile()
+        public void WriteToFile()
         {
             List<string> stringCards = new List<string>();
             foreach (CardItem card in _cards)
