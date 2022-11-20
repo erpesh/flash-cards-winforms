@@ -4,13 +4,14 @@ namespace FlashCards
 {
     public partial class MainForm : Form
     {
-        private CardsSet _cardSet = new CardsSet();
+        private CardsSet cardsSet = new CardsSet();
         public MainForm()
         {
             InitializeComponent();
 
-            mainPage1.CardsSet = _cardSet;
-            learnPage1.CardsSet = _cardSet;
+            mainPage1.MainForm = this;
+            mainPage1.CardsSet = cardsSet;
+            learnPage1.CardsSet = cardsSet;
         }
 
         // code copied from https://stackoverflow.com/questions/34006951/prevent-button-from-being-focused-by-arrow-key-click
@@ -23,11 +24,14 @@ namespace FlashCards
                 return true;
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        public void UpdateLearnPage()
+        {
+            learnPage1.UpdateCardText();
+        }
         private void btnMainPage_Click(object sender, EventArgs e)
         {
             mainPage1.BringToFront();
         }
-
         private void btnLearnPage_Click(object sender, EventArgs e)
         {
             learnPage1.BringToFront();

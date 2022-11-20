@@ -8,17 +8,17 @@ namespace FlashCards
 {
     public class CardItem
     {
-        private string _term;
-        private string _definition;
+        private string term;
+        private string definition;
         public string Term
         {
-            get { return _term; }
-            set { _term = value; }
+            get { return term; }
+            set { term = value; }
         }
         public string Definition
         {
-            get { return _definition; }
-            set { _definition = value; }
+            get { return definition; }
+            set { definition = value; }
         }
     }
 }

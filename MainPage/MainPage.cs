@@ -12,11 +12,17 @@ namespace FlashCards.MainPage
 {
     public partial class MainPage : UserControl
     {
-        private CardsSet _cardsSet;
+        private MainForm mainForm;
+        private CardsSet cardsSet;
+        public MainForm MainForm
+        {
+            get { return mainForm; }
+            set { mainForm = value; }
+        }
         public CardsSet CardsSet
         {
-            get { return _cardsSet; }
-            set { _cardsSet = value; }
+            get { return cardsSet; }
+            set { cardsSet = value; }
         }
         public MainPage()
         {
@@ -29,12 +35,12 @@ namespace FlashCards.MainPage
         private void DisplayCards()
         {
             cardsPanel.Controls.Clear();
-            foreach (CardItem card in _cardsSet.Cards)
+            foreach (CardItem card in cardsSet.Cards)
             {
                 CardListItem cardListItem = new CardListItem();
                 cardListItem.MainPage = this;
                 cardListItem.Card = card;
-                cardListItem.RemoveCard = _cardsSet.RemoveCard;
+                cardListItem.RemoveCard = cardsSet.RemoveCard;
                 cardsPanel.Controls.Add(cardListItem);
             }
         }
@@ -43,20 +49,14 @@ namespace FlashCards.MainPage
             var card = new CardItem();
             card.Term = txtTerm.Text;
             card.Definition = txtDefinition.Text;
-            _cardsSet.AddCard(card);
+            cardsSet.AddCard(card);
             txtTerm.Text = "";
             txtDefinition.Text = "";
             DisplayCards();
         }
-        public void UpdateLearnPage()
-        {
-            var learnPage1 = Parent.Controls.Find("learnPage1", true).FirstOrDefault() as LearnPage.LearnPage;
-            learnPage1.UpdateCardText();
-        }
         private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
         {
-            lblDefinition.Enabled = true;
-            UpdateLearnPage();
+            mainForm.UpdateLearnPage();
         }
     }
 }

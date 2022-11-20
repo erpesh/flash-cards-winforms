@@ -12,26 +12,25 @@ namespace FlashCards.MainPage
 {
     public partial class CardListItem : UserControl
     {
-        private MainPage _mainPage;
-        private CardItem _card;
-        private Action<CardItem> _removeCard;
+        private MainPage mainPage;
+        private CardItem card;
+        private Action<CardItem> removeCard;
         public MainPage MainPage
         {
-            set { _mainPage = value; }
+            set { mainPage = value; }
         }
         public CardItem Card
         {
-            get { return _card; }
             set 
             { 
-                _card = value;
+                card = value;
                 txtTerm.Text = value.Term;
                 txtDefinition.Text = value.Definition;
             }
         }
         public Action<CardItem> RemoveCard
         {
-            set { _removeCard = value; }
+            set { removeCard = value; }
         }
         public CardListItem()
         {
@@ -39,33 +38,35 @@ namespace FlashCards.MainPage
         }
         private void Remove_Click(object sender, EventArgs e)
         {
-            _removeCard(_card);
+            removeCard(card);
             this.Dispose();
         }
-
+        private void SwitchButtons()
+        {
+            btnEdit.Visible = !btnEdit.Visible;
+            btnSave.Visible = !btnSave.Visible;
+        }
         private void Edit_Click(object sender, EventArgs e)
         {
             txtTerm.Select();
             txtTerm.ReadOnly = false;
             txtDefinition.ReadOnly = false;
-            btnEdit.Visible = false;
-            btnSave.Visible = true;
+            SwitchButtons();
         }
         private void Save_Click(object sender, EventArgs e)
         {
-            _mainPage.CardsSet.WriteToFile();
-            _mainPage.UpdateLearnPage();
-            btnEdit.Visible = true;
-            btnSave.Visible = false;
+            mainPage.CardsSet.WriteToFile();
+            mainPage.MainForm.UpdateLearnPage();
+            SwitchButtons();
         }
         private void Term_Change(object sender, EventArgs e)
         {
-            _card.Term = txtTerm.Text;
+            card.Term = txtTerm.Text;
         }
 
         private void Definition_Change(object sender, EventArgs e)
         {
-            _card.Definition = txtDefinition.Text;
+            card.Definition = txtDefinition.Text;
         }
     }
 }

@@ -12,14 +12,14 @@ namespace FlashCards.LearnPage
 {
     public partial class LearnPage : UserControl
     {
-        private CardsSet _cardsSet;
-        private int _activeCardIndex = 0;
-        private bool _isActiveSideIsTerm = true;
+        private CardsSet cardsSet;
+        private int activeCardIndex = 0;
+        private bool isActiveSideIsTerm = true;
         public CardsSet CardsSet
         {
             set 
             { 
-                _cardsSet = value;
+                cardsSet = value;
                 UpdateCardText();
             }
         }
@@ -29,47 +29,47 @@ namespace FlashCards.LearnPage
         }
         private void SwitchCardSide()
         {
-            _isActiveSideIsTerm = !_isActiveSideIsTerm;
+            isActiveSideIsTerm = !isActiveSideIsTerm;
             UpdateCardText();
         }
         public void UpdateCardText()
         {
             // when there is no cards left
-            if (_cardsSet.Cards.Count == 0)
+            if (cardsSet.Cards.Count == 0)
             {
                 lblText.Text = "";
                 return;
             }
             // when the last card was active and got removed
-            if (_activeCardIndex >= _cardsSet.Cards.Count)
+            if (activeCardIndex >= cardsSet.Cards.Count)
             {
-                _activeCardIndex = _cardsSet.Cards.Count - 1;
+                activeCardIndex = cardsSet.Cards.Count - 1;
             }
-            if (_isActiveSideIsTerm)
+            if (isActiveSideIsTerm)
             {
-                lblText.Text = _cardsSet.Cards[_activeCardIndex].Term;
+                lblText.Text = cardsSet.Cards[activeCardIndex].Term;
             }
             else
             {
-                lblText.Text = _cardsSet.Cards[_activeCardIndex].Definition;
+                lblText.Text = cardsSet.Cards[activeCardIndex].Definition;
             }
         }
         private void LeftPress()
         {
-            if (_activeCardIndex == 0)
+            if (activeCardIndex == 0)
             {
-                _activeCardIndex = _cardsSet.Cards.Count - 1;
+                activeCardIndex = cardsSet.Cards.Count - 1;
             }
-            else _activeCardIndex--;
+            else activeCardIndex--;
             UpdateCardText();
         }
         private void RightPress()
         {
-            if (_activeCardIndex == _cardsSet.Cards.Count - 1)
+            if (activeCardIndex == cardsSet.Cards.Count - 1)
             {
-                _activeCardIndex = 0;
+                activeCardIndex = 0;
             }
-            else _activeCardIndex++;
+            else activeCardIndex++;
             UpdateCardText();
         }
         private void LearnPage_KeyDown(object sender, PreviewKeyDownEventArgs e)

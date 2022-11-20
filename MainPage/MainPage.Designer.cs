@@ -82,6 +82,7 @@
             // 
             // cardsPanel
             // 
+            this.cardsPanel.AllowDrop = true;
             this.cardsPanel.AutoScroll = true;
             this.cardsPanel.Location = new System.Drawing.Point(519, 22);
             this.cardsPanel.Name = "cardsPanel";
