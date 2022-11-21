@@ -49,9 +49,9 @@
             this.lblText.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblText.Font = new System.Drawing.Font("Segoe UI", 26.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblText.Location = new System.Drawing.Point(192, 78);
-            this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(952, 593);
             this.lblText.MaximumSize = new System.Drawing.Size(533, 335);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(533, 335);
             this.lblText.TabIndex = 1;
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblText.Click += new System.EventHandler(this.Card_Click);
