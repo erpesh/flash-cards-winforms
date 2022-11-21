@@ -9,9 +9,11 @@ namespace FlashCards
         {
             InitializeComponent();
 
+            mainPage1.BringToFront();
             mainPage1.MainForm = this;
             mainPage1.CardsSet = cardsSet;
             learnPage1.CardsSet = cardsSet;
+            testPage1.CardsSet = cardsSet;
         }
 
         // code copied from https://stackoverflow.com/questions/34006951/prevent-button-from-being-focused-by-arrow-key-click
@@ -35,6 +37,11 @@ namespace FlashCards
         private void btnLearnPage_Click(object sender, EventArgs e)
         {
             learnPage1.BringToFront();
+        }
+
+        private void btnTestPage_Click(object sender, EventArgs e)
+        {
+            testPage1.BringToFront();
         }
     }
 }

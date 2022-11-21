@@ -12,9 +12,20 @@ namespace FlashCards.TestPage
 {
     public partial class TestPage : UserControl
     {
+        private CardsSet cardsSet;
+        public CardsSet CardsSet { set { cardsSet = value; } }
         public TestPage()
         {
             InitializeComponent();
+        }
+        public void GenerateTest()
+        {
+            var test = new CardsTest(cardsSet);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GenerateTest();
         }
     }
 }

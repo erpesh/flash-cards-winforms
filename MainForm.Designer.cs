@@ -34,6 +34,7 @@
             this.learnPage1 = new FlashCards.LearnPage.LearnPage();
             this.mainPage1 = new FlashCards.MainPage.MainPage();
             this.btnTestPage = new System.Windows.Forms.Button();
+            this.testPage1 = new FlashCards.TestPage.TestPage();
             this.SuspendLayout();
             // 
             // headerBg
@@ -88,12 +89,21 @@
             this.btnTestPage.TabIndex = 4;
             this.btnTestPage.Text = "Test";
             this.btnTestPage.UseVisualStyleBackColor = true;
+            this.btnTestPage.Click += new System.EventHandler(this.btnTestPage_Click);
+            // 
+            // testPage1
+            // 
+            this.testPage1.Location = new System.Drawing.Point(-3, 54);
+            this.testPage1.Name = "testPage1";
+            this.testPage1.Size = new System.Drawing.Size(937, 494);
+            this.testPage1.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 546);
+            this.Controls.Add(this.testPage1);
             this.Controls.Add(this.btnTestPage);
             this.Controls.Add(this.mainPage1);
             this.Controls.Add(this.learnPage1);
@@ -116,5 +126,6 @@
         private LearnPage.LearnPage learnPage1;
         private MainPage.MainPage mainPage1;
         private Button btnTestPage;
+        private TestPage.TestPage testPage1;
     }
 }

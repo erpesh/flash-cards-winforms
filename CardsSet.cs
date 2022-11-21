@@ -51,5 +51,17 @@ namespace FlashCards
             cards.Remove(card);
             WriteToFile();
         }
+        public string GetRandomCardExcept(List<string> exceptions)
+        {
+            Random rnd = new Random();
+            while (true)
+            {
+                var index = rnd.Next(0, cards.Count);
+                if (!exceptions.Contains(cards[index].Term))
+                {
+                    return cards[index].Term;
+                }
+            }
+        }
     }
 }
