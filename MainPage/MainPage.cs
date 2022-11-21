@@ -46,13 +46,18 @@ namespace FlashCards.MainPage
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var card = new CardItem();
-            card.Term = txtTerm.Text;
-            card.Definition = txtDefinition.Text;
+            var card = new CardItem(txtTerm.Text, txtDefinition.Text);
             cardsSet.AddCard(card);
+
+            CardListItem cardListItem = new CardListItem();
+            cardListItem.MainPage = this;
+            cardListItem.Card = card;
+            cardListItem.RemoveCard = cardsSet.RemoveCard;
+            cardsPanel.Controls.Add(cardListItem);
+
             txtTerm.Text = "";
             txtDefinition.Text = "";
-            DisplayCards();
+            //DisplayCards();
         }
         private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
         {

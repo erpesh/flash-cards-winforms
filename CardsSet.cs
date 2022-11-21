@@ -26,9 +26,7 @@ namespace FlashCards
             foreach (string card in cards)
             {
                 var splitCard = card.Split(separator);
-                var newCardItem = new CardItem();
-                newCardItem.Term = splitCard[0];
-                newCardItem.Definition = splitCard[1];
+                var newCardItem = new CardItem(splitCard[0], splitCard[1]);
                 this.cards.Add(newCardItem);
             }
         }

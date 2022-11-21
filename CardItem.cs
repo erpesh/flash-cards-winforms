@@ -20,5 +20,10 @@ namespace FlashCards
             get { return definition; }
             set { definition = value; }
         }
+        public CardItem(string term, string definition)
+        {
+            this.term = term;
+            this.definition = definition;
+        }
     }
 }

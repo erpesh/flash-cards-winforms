@@ -46,17 +46,22 @@ namespace FlashCards.MainPage
             btnEdit.Visible = !btnEdit.Visible;
             btnSave.Visible = !btnSave.Visible;
         }
+        private void SwitchReadOnly()
+        {
+            txtTerm.ReadOnly = !txtTerm.ReadOnly;
+            txtDefinition.ReadOnly = !txtDefinition.ReadOnly;
+        }
         private void Edit_Click(object sender, EventArgs e)
         {
             txtTerm.Select();
-            txtTerm.ReadOnly = false;
-            txtDefinition.ReadOnly = false;
+            SwitchReadOnly();
             SwitchButtons();
         }
         private void Save_Click(object sender, EventArgs e)
         {
             mainPage.CardsSet.WriteToFile();
             mainPage.MainForm.UpdateLearnPage();
+            SwitchReadOnly();
             SwitchButtons();
         }
         private void Term_Change(object sender, EventArgs e)
