@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace FlashCards
 {
-    class CardsTest
+    public class CardsTest
     {
         private CardsSet cardsSet;
-        private List<TestQuestion> questions = new();
+        private List<TestQuestion> testQuestions = new();
+        public List<TestQuestion> TestQuestions { get { return testQuestions; } } 
         public CardsTest(CardsSet cardsSet)
         {
             this.cardsSet = cardsSet;
@@ -20,7 +21,7 @@ namespace FlashCards
             foreach (CardItem cardItem in cardsSet.Cards)
             {
                 TestQuestion question = new(cardsSet, cardItem);
-                questions.Add(question);
+                testQuestions.Add(question);
             }
         }
     }

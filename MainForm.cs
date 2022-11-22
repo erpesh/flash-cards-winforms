@@ -42,6 +42,8 @@ namespace FlashCards
         private void btnTestPage_Click(object sender, EventArgs e)
         {
             testPage1.BringToFront();
+            if (!testPage1.IsTestGenerated())
+                testPage1.GenerateTest();
         }
     }
 }

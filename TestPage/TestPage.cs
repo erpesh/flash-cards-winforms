@@ -13,19 +13,29 @@ namespace FlashCards.TestPage
     public partial class TestPage : UserControl
     {
         private CardsSet cardsSet;
+        private CardsTest cardsTest;
+        private int activeQuestionIndex = 0;
         public CardsSet CardsSet { set { cardsSet = value; } }
         public TestPage()
         {
             InitializeComponent();
         }
+        public bool IsTestGenerated() { return cardsTest != null; }
         public void GenerateTest()
         {
-            var test = new CardsTest(cardsSet);
+            cardsTest = new CardsTest(cardsSet);
+            for(int i = 0; i < cardsTest.TestQuestions.Count; i++)
+            {
+                string formatedNumber = String.Format("   {0}     ", i > 9 ? i : i + " ");
+                lstQuestions.Items.Add(formatedNumber);
+            }
+            testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void QuestionsList_IndexChange(object sender, EventArgs e)
         {
-            GenerateTest();
+            if (lstQuestions.SelectedItems.Count == 0) return;
+            activeQuestionIndex = int.Parse(lstQuestions.SelectedItems[0].Text.Trim());
+            testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
         }
     }
 }

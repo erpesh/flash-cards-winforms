@@ -55,9 +55,9 @@ namespace FlashCards
             while (true)
             {
                 var index = rnd.Next(0, cards.Count);
-                if (!exceptions.Contains(cards[index].Term))
+                if (!exceptions.Contains(cards[index].Definition))
                 {
-                    return cards[index].Term;
+                    return cards[index].Definition;
                 }
             }
         }
