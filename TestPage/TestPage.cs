@@ -19,6 +19,8 @@ namespace FlashCards.TestPage
         public TestPage()
         {
             InitializeComponent();
+
+            testQuestionItem.TestPage = this;
         }
         public bool IsTestGenerated() { return cardsTest != null; }
         public void GenerateTest()
@@ -35,6 +37,11 @@ namespace FlashCards.TestPage
         {
             if (lstQuestions.SelectedItems.Count == 0) return;
             activeQuestionIndex = int.Parse(lstQuestions.SelectedItems[0].Text.Trim());
+            testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
+        }
+        public void SetNextQuestion()
+        {
+            activeQuestionIndex++;
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
         }
     }

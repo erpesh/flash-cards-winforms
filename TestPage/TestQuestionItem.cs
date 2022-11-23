@@ -20,9 +20,11 @@ namespace FlashCards.TestPage
             Third = 2, 
             Fourth = 3,
         }
+        private TestPage testPage;
         private TestQuestion testQuestion;
 
         // getters setters
+        public TestPage TestPage { set { testPage = value; } }
         public TestQuestion TestQuestion
         {
             get { return testQuestion; }
@@ -48,6 +50,7 @@ namespace FlashCards.TestPage
         private void HandleButtonClick(ButtonIndex buttonIndex)
         {
             testQuestion.SetAnswer((int)buttonIndex);
+            testPage.SetNextQuestion();
         }
 
         private void btnAnswer1_Click(object sender, EventArgs e)
