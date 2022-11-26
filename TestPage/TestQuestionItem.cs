@@ -32,11 +32,7 @@ namespace FlashCards.TestPage
             {
                 if (value == null) return;
                 testQuestion = value;
-                lblTerm.Text = value.CardItem.Term;
-                btnAnswer1.Text = value.PossibleAnswers[0];
-                btnAnswer2.Text = value.PossibleAnswers[1];
-                btnAnswer3.Text = value.PossibleAnswers[2];
-                btnAnswer4.Text = value.PossibleAnswers[3];
+                UpdateTestQuestionItem();
             }
         }
 
@@ -47,30 +43,51 @@ namespace FlashCards.TestPage
         }
 
         //methods
-        private void HandleButtonClick(ButtonIndex buttonIndex)
+        private void UpdateTestQuestionItem()
         {
-            testQuestion.SetAnswer((int)buttonIndex);
-            testPage.SetNextQuestion();
-        }
+            lblTerm.Text = testQuestion.CardItem.Term;
+            btnAnswer1.Text = testQuestion.PossibleAnswers[0];
+            btnAnswer2.Text = testQuestion.PossibleAnswers[1];
+            btnAnswer3.Text = testQuestion.PossibleAnswers[2];
+            btnAnswer4.Text = testQuestion.PossibleAnswers[3];
 
+            btnAnswer1.BackColor = SystemColors.ButtonFace;
+            btnAnswer2.BackColor = SystemColors.ButtonFace;
+            btnAnswer3.BackColor = SystemColors.ButtonFace;
+            btnAnswer4.BackColor = SystemColors.ButtonFace;
+
+            if (testQuestion.IsAnswered)
+            {
+                if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.LightGreen;
+                else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.LightGreen;
+                else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.LightGreen;
+                else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightGreen;
+            }
+        }
+        private void HandleAnswerButtonClick(ButtonIndex buttonIndex)
+        {
+            testQuestion.AnswerIndex = (int)buttonIndex;
+            testPage.UpdateQuestion(true);
+            testPage.SelectListItem();
+        }
         private void btnAnswer1_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(ButtonIndex.First);
+            HandleAnswerButtonClick(ButtonIndex.First);
         }
 
         private void btnAnswer2_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(ButtonIndex.Second);
+            HandleAnswerButtonClick(ButtonIndex.Second);
         }
 
         private void btnAnswer3_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(ButtonIndex.Third);
+            HandleAnswerButtonClick(ButtonIndex.Third);
         }
 
         private void btnAnswer4_Click(object sender, EventArgs e)
         {
-            HandleButtonClick(ButtonIndex.Fourth);
+            HandleAnswerButtonClick(ButtonIndex.Fourth);
         }
     }
 }

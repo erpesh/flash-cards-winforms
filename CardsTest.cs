@@ -23,6 +23,8 @@ namespace FlashCards
                 TestQuestion question = new(cardsSet, cardItem);
                 testQuestions.Add(question);
             }
+            Random rand = new Random();
+            testQuestions = testQuestions.OrderBy(_ => rand.Next()).ToList();
         }
     }
 }

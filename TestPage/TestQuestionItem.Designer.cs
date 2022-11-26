@@ -66,46 +66,50 @@
             // 
             // btnAnswer1
             // 
+            this.btnAnswer1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAnswer1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAnswer1.Location = new System.Drawing.Point(24, 198);
             this.btnAnswer1.Name = "btnAnswer1";
             this.btnAnswer1.Size = new System.Drawing.Size(275, 60);
             this.btnAnswer1.TabIndex = 3;
             this.btnAnswer1.Text = "button1";
-            this.btnAnswer1.UseVisualStyleBackColor = true;
+            this.btnAnswer1.UseVisualStyleBackColor = false;
             this.btnAnswer1.Click += new System.EventHandler(this.btnAnswer1_Click);
             // 
             // btnAnswer2
             // 
+            this.btnAnswer2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAnswer2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAnswer2.Location = new System.Drawing.Point(318, 198);
             this.btnAnswer2.Name = "btnAnswer2";
             this.btnAnswer2.Size = new System.Drawing.Size(275, 60);
             this.btnAnswer2.TabIndex = 4;
             this.btnAnswer2.Text = "button2";
-            this.btnAnswer2.UseVisualStyleBackColor = true;
+            this.btnAnswer2.UseVisualStyleBackColor = false;
             this.btnAnswer2.Click += new System.EventHandler(this.btnAnswer2_Click);
             // 
             // btnAnswer3
             // 
+            this.btnAnswer3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAnswer3.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAnswer3.Location = new System.Drawing.Point(24, 274);
             this.btnAnswer3.Name = "btnAnswer3";
             this.btnAnswer3.Size = new System.Drawing.Size(275, 60);
             this.btnAnswer3.TabIndex = 5;
             this.btnAnswer3.Text = "button3";
-            this.btnAnswer3.UseVisualStyleBackColor = true;
+            this.btnAnswer3.UseVisualStyleBackColor = false;
             this.btnAnswer3.Click += new System.EventHandler(this.btnAnswer3_Click);
             // 
             // btnAnswer4
             // 
+            this.btnAnswer4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAnswer4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAnswer4.Location = new System.Drawing.Point(318, 274);
             this.btnAnswer4.Name = "btnAnswer4";
             this.btnAnswer4.Size = new System.Drawing.Size(275, 60);
             this.btnAnswer4.TabIndex = 6;
             this.btnAnswer4.Text = "button4";
-            this.btnAnswer4.UseVisualStyleBackColor = true;
+            this.btnAnswer4.UseVisualStyleBackColor = false;
             this.btnAnswer4.Click += new System.EventHandler(this.btnAnswer4_Click);
             // 
             // TestQuestionItem

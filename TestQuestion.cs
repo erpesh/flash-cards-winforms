@@ -13,21 +13,25 @@ namespace FlashCards
         private CardsSet cardsSet;
         private CardItem cardItem;
         private List<string> possibleAnswers = new();
-        private string answer = "";
+        private int answerIndex;
         private bool isAnswered = false;
         private bool isCorrect = false;
 
         // getters setters
         public CardItem CardItem { get { return cardItem; } }
         public List<string> PossibleAnswers { get { return possibleAnswers; } }
+        public int AnswerIndex
+        {
+            get { return answerIndex; }
+            set
+            {
+                answerIndex = value;
+                isAnswered = true;
+                isCorrect = possibleAnswers[answerIndex] == cardItem.Definition;
+            }
+        }
         public bool IsAnswered { get { return isAnswered; } }
         public bool IsCorrect { get { return isCorrect; } }
-        public void SetAnswer(int answerIndex)
-        {
-            answer = possibleAnswers[answerIndex];
-            isAnswered = true;
-            isCorrect = answer == cardItem.Definition;
-        }
 
         // constructors
         public TestQuestion(CardsSet cardsSet, CardItem cardItem)
