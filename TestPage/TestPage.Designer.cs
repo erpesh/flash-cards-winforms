@@ -31,8 +31,9 @@
             this.lblQuestionsList = new System.Windows.Forms.Label();
             this.testQuestionItem = new FlashCards.TestPage.TestQuestionItem();
             this.lstQuestions = new System.Windows.Forms.ListView();
-            this.btnNextQuestion = new System.Windows.Forms.Button();
+            this.btnSubmitTest = new System.Windows.Forms.Button();
             this.btnPrevQuestion = new System.Windows.Forms.Button();
+            this.btnNextQuestion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblQuestionsList
@@ -66,16 +67,17 @@
             this.lstQuestions.View = System.Windows.Forms.View.List;
             this.lstQuestions.SelectedIndexChanged += new System.EventHandler(this.QuestionsList_IndexChange);
             // 
-            // btnNextQuestion
+            // btnSubmitTest
             // 
-            this.btnNextQuestion.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNextQuestion.Location = new System.Drawing.Point(692, 404);
-            this.btnNextQuestion.Name = "btnNextQuestion";
-            this.btnNextQuestion.Size = new System.Drawing.Size(203, 50);
-            this.btnNextQuestion.TabIndex = 4;
-            this.btnNextQuestion.Text = "Next Question";
-            this.btnNextQuestion.UseVisualStyleBackColor = true;
-            this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
+            this.btnSubmitTest.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSubmitTest.Location = new System.Drawing.Point(679, 404);
+            this.btnSubmitTest.Name = "btnSubmitTest";
+            this.btnSubmitTest.Size = new System.Drawing.Size(203, 50);
+            this.btnSubmitTest.TabIndex = 4;
+            this.btnSubmitTest.Text = "Submit Test";
+            this.btnSubmitTest.UseVisualStyleBackColor = true;
+            this.btnSubmitTest.Visible = false;
+            this.btnSubmitTest.Click += new System.EventHandler(this.btnSubmitTest_Click);
             // 
             // btnPrevQuestion
             // 
@@ -86,14 +88,27 @@
             this.btnPrevQuestion.TabIndex = 5;
             this.btnPrevQuestion.Text = "Prev Question";
             this.btnPrevQuestion.UseVisualStyleBackColor = true;
+            this.btnPrevQuestion.Visible = false;
             this.btnPrevQuestion.Click += new System.EventHandler(this.btnPrevQuestion_Click);
+            // 
+            // btnNextQuestion
+            // 
+            this.btnNextQuestion.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnNextQuestion.Location = new System.Drawing.Point(679, 404);
+            this.btnNextQuestion.Name = "btnNextQuestion";
+            this.btnNextQuestion.Size = new System.Drawing.Size(203, 50);
+            this.btnNextQuestion.TabIndex = 6;
+            this.btnNextQuestion.Text = "Next Question";
+            this.btnNextQuestion.UseVisualStyleBackColor = true;
+            this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
             // 
             // TestPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnPrevQuestion);
             this.Controls.Add(this.btnNextQuestion);
+            this.Controls.Add(this.btnPrevQuestion);
+            this.Controls.Add(this.btnSubmitTest);
             this.Controls.Add(this.lstQuestions);
             this.Controls.Add(this.testQuestionItem);
             this.Controls.Add(this.lblQuestionsList);
@@ -108,7 +123,8 @@
         private Label lblQuestionsList;
         private TestQuestionItem testQuestionItem;
         private ListView lstQuestions;
-        private Button btnNextQuestion;
+        private Button btnSubmitTest;
         private Button btnPrevQuestion;
+        private Button btnNextQuestion;
     }
 }

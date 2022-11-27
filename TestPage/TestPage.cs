@@ -48,6 +48,7 @@ namespace FlashCards.TestPage
             if (lstQuestions.SelectedItems.Count == 0) return;
             activeQuestionIndex = int.Parse(lstQuestions.SelectedItems[0].Text.Trim()) - 1;
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
+            NavigationButtonsUpdate();
         }
         public void UpdateQuestion(bool isNext)
         {
@@ -56,15 +57,26 @@ namespace FlashCards.TestPage
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
             SelectListItem();
         }
-
+        private void NavigationButtonsUpdate()
+        {
+            btnPrevQuestion.Visible = activeQuestionIndex != 0;
+            btnNextQuestion.Visible = activeQuestionIndex != cardsTest.TestQuestions.Count - 1;
+            btnSubmitTest.Visible = activeQuestionIndex == cardsTest.TestQuestions.Count - 1;
+        }
         private void btnPrevQuestion_Click(object sender, EventArgs e)
         {
             UpdateQuestion(false);
+            NavigationButtonsUpdate();
         }
-
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
             UpdateQuestion(true);
+            NavigationButtonsUpdate();
+        }
+
+        private void btnSubmitTest_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
