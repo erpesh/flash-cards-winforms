@@ -45,14 +45,14 @@ namespace FlashCards
         // methods
         private void GeneratePossibleAnswers()
         {
-            Random rnd = new Random();
-            int randomIndex = rnd.Next(numberOfAnswers);
-            
-            for (int i = 0; i < numberOfAnswers; i++)
+            possibleAnswers.Add(cardItem.Definition);
+
+            for (int i = 0; i < numberOfAnswers - 1; i++)
             {
-                if (randomIndex == i) possibleAnswers.Add(cardItem.Definition);
-                else possibleAnswers.Add(cardsSet.GetRandomCardExcept(possibleAnswers));
+                possibleAnswers.Add(cardsSet.GetRandomCardExcept(possibleAnswers));
             }
+            Random rand = new Random();
+            possibleAnswers = possibleAnswers.OrderBy(_ => rand.Next()).ToList();
         }
     }
 }

@@ -12,8 +12,11 @@ namespace FlashCards.MainPage
 {
     public partial class MainPage : UserControl
     {
+        // attributes
         private MainForm mainForm;
         private CardsSet cardsSet;
+
+        // getters setters
         public MainForm MainForm
         {
             get { return mainForm; }
@@ -24,10 +27,14 @@ namespace FlashCards.MainPage
             get { return cardsSet; }
             set { cardsSet = value; }
         }
+
+        // constructor
         public MainPage()
         {
             InitializeComponent();
         }
+
+        // methods
         private void MainPage_Load(object sender, EventArgs e)
         {
             DisplayCards();
@@ -57,11 +64,11 @@ namespace FlashCards.MainPage
 
             txtTerm.Text = "";
             txtDefinition.Text = "";
-            //DisplayCards();
         }
         private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
         {
             mainForm.UpdateLearnPage();
+            mainForm.ResetTestPage();
         }
     }
 }

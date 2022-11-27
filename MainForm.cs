@@ -30,6 +30,10 @@ namespace FlashCards
         {
             learnPage1.UpdateCardText();
         }
+        public void ResetTestPage()
+        {
+            testPage1.CardsSet = cardsSet;
+        }
         private void btnMainPage_Click(object sender, EventArgs e)
         {
             mainPage1.BringToFront();

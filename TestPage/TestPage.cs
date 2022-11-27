@@ -12,25 +12,43 @@ namespace FlashCards.TestPage
 {
     public partial class TestPage : UserControl
     {
+        // attributes
         private CardsSet cardsSet;
         private CardsTest cardsTest;
         private int activeQuestionIndex = 0;
-        public CardsSet CardsSet { set { cardsSet = value; } }
+
+        // getters setters
+        public CardsSet CardsSet 
+        { 
+            set 
+            { 
+                cardsSet = value;
+                cardsTest = null;
+                activeQuestionIndex = 0;
+            } 
+        }
+
+        // constructor
         public TestPage()
         {
             InitializeComponent();
 
             testQuestionItem.TestPage = this;
         }
+
+        // methods
         public bool IsTestGenerated() { return cardsTest != null; }
         public void GenerateTest()
         {
+            lstQuestions.Items.Clear();
             cardsTest = new CardsTest(cardsSet);
+
             for(int i = 1; i < cardsTest.TestQuestions.Count + 1; i++)
             {
                 string formatedNumber = String.Format("   {0}     ", i > 9 ? i : i + " ");
                 lstQuestions.Items.Add(formatedNumber);
             }
+
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
             SelectListItem();
         }
@@ -76,7 +94,7 @@ namespace FlashCards.TestPage
 
         private void btnSubmitTest_Click(object sender, EventArgs e)
         {
-
+            cardsTest.SubmitTest();
         }
     }
 }

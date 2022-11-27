@@ -58,10 +58,10 @@ namespace FlashCards.TestPage
 
             if (testQuestion.IsAnswered)
             {
-                if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.LightGreen;
-                else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.LightGreen;
-                else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.LightGreen;
-                else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightGreen;
+                if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.LightBlue;
+                else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.LightBlue;
+                else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.LightBlue;
+                else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightBlue;
             }
         }
         private void HandleAnswerButtonClick(ButtonIndex buttonIndex)
