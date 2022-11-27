@@ -67,8 +67,7 @@ namespace FlashCards.TestPage
         private void HandleAnswerButtonClick(ButtonIndex buttonIndex)
         {
             testQuestion.AnswerIndex = (int)buttonIndex;
-            testPage.UpdateQuestion(true);
-            testPage.SelectListItem();
+            UpdateTestQuestionItem();
         }
         private void btnAnswer1_Click(object sender, EventArgs e)
         {

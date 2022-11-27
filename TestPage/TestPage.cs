@@ -34,7 +34,7 @@ namespace FlashCards.TestPage
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
             SelectListItem();
         }
-        public void SelectListItem()
+        private void SelectListItem()
         {
             foreach (ListViewItem item in lstQuestions.Items)
             {
@@ -54,6 +54,17 @@ namespace FlashCards.TestPage
             if (isNext) activeQuestionIndex++;
             else activeQuestionIndex--;
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
+            SelectListItem();
+        }
+
+        private void btnPrevQuestion_Click(object sender, EventArgs e)
+        {
+            UpdateQuestion(false);
+        }
+
+        private void btnNextQuestion_Click(object sender, EventArgs e)
+        {
+            UpdateQuestion(true);
         }
     }
 }
