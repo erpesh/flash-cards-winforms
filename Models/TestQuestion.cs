@@ -8,7 +8,7 @@ namespace FlashCards.Models
 {
     public class TestQuestion
     {
-        // attributes
+        // data
         private const int numberOfAnswers = 4;
         private CardsSet cardsSet;
         private CardItem cardItem;
@@ -19,21 +19,41 @@ namespace FlashCards.Models
 
         // getters setters
         public CardItem CardItem { get { return cardItem; } }
+        public int CorrectAnswerIndex
+        {
+            get
+            {
+                for (int i = 0; i < numberOfAnswers; i++)
+                {
+                    if (possibleAnswers[i] == cardItem.Definition) return i;
+                }
+                return 0;
+            }
+        }
         public List<string> PossibleAnswers { get { return possibleAnswers; } }
         public int AnswerIndex
         {
             get { return answerIndex; }
             set
             {
-                answerIndex = value;
-                isAnswered = true;
-                isCorrect = possibleAnswers[answerIndex] == cardItem.Definition;
+                if (value == -1)
+                {
+                    isAnswered = false;
+                    isCorrect = false;
+                }
+                else 
+                { 
+                    answerIndex = value;
+                    isAnswered = true;
+                    isCorrect = possibleAnswers[answerIndex] == cardItem.Definition;
+                }
+                
             }
         }
         public bool IsAnswered { get { return isAnswered; } }
         public bool IsCorrect { get { return isCorrect; } }
 
-        // constructors
+        // constructor
         public TestQuestion(CardsSet cardsSet, CardItem cardItem)
         {
             this.cardsSet = cardsSet;
@@ -42,7 +62,7 @@ namespace FlashCards.Models
             GeneratePossibleAnswers();
         }
 
-        // methods
+        // functions
         private void GeneratePossibleAnswers()
         {
             possibleAnswers.Add(cardItem.Definition);

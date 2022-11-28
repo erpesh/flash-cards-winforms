@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlashCards.Models;
+using FlashCards.Pages.TestPage;
 
 namespace FlashCards.TestPage
 {
     public partial class TestPage : UserControl
     {
-        // attributes
+        // data
         private CardsSet cardsSet;
         private CardsTest cardsTest;
         private int activeQuestionIndex;
@@ -37,7 +38,28 @@ namespace FlashCards.TestPage
             testQuestionItem.TestPage = this;
         }
 
-        // methods
+        // event functions
+        private void btnPrevQuestion_Click(object sender, EventArgs e)
+        {
+            UpdateQuestion(false);
+            NavigationButtonsUpdate();
+        }
+        private void btnNextQuestion_Click(object sender, EventArgs e)
+        {
+            UpdateQuestion(true);
+            NavigationButtonsUpdate();
+        }
+        private void btnSubmitTest_Click(object sender, EventArgs e)
+        {
+            OpenResultsWindow();
+
+            cardsTest.SubmitTest();
+            testQuestionItem.IsTestSubmited = true;
+            activeQuestionIndex = 0;
+            SelectListItem();
+        }
+
+        // member functions
         public bool IsTestGenerated() { return cardsTest != null; }
         public void GenerateTest()
         {
@@ -83,26 +105,13 @@ namespace FlashCards.TestPage
             btnNextQuestion.Visible = activeQuestionIndex != cardsTest.TestQuestions.Count - 1;
             btnSubmitTest.Visible = activeQuestionIndex == cardsTest.TestQuestions.Count - 1;
         }
-        private void btnPrevQuestion_Click(object sender, EventArgs e)
+        private void OpenResultsWindow()
         {
-            UpdateQuestion(false);
-            NavigationButtonsUpdate();
-        }
-        private void btnNextQuestion_Click(object sender, EventArgs e)
-        {
-            UpdateQuestion(true);
-            NavigationButtonsUpdate();
-        }
-        private void btnSubmitTest_Click(object sender, EventArgs e)
-        {
-            activeQuestionIndex = -1;
-            cardsTest.SubmitTest();
-            SelectListItem();
-            lblQuestionsList.Visible = false;
-            lstQuestions.Visible = false;
-            testQuestionItem.Visible = false;
-            btnPrevQuestion.Visible = false;
-            btnSubmitTest.Visible = false;
+            TestResults tr = new TestResults();
+            int numberOfCorrectAnswers = cardsTest.GetNumberOfCorrectAnswers();
+            int numberOfIncorrectAnswers = cardsTest.TestQuestions.Count - numberOfCorrectAnswers;
+            tr.SetTestResults(numberOfCorrectAnswers, numberOfIncorrectAnswers);
+            tr.ShowDialog();
         }
     }
 }

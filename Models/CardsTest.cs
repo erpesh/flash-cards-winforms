@@ -39,5 +39,14 @@ namespace FlashCards.Models
         {
             isTestSubmited = true;
         }
+        public int GetNumberOfCorrectAnswers()
+        {
+            int numberOfCorrectAnswers = 0;
+            foreach(TestQuestion testQuestion in testQuestions)
+            {
+                if (testQuestion.IsCorrect) numberOfCorrectAnswers++;
+            }
+            return numberOfCorrectAnswers;
+        }
     }
 }

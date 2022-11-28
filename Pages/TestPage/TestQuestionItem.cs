@@ -16,6 +16,7 @@ namespace FlashCards.TestPage
         // data
         private TestPage testPage;
         private TestQuestion testQuestion;
+        private bool isTestSubmited;
 
         // getters setters
         public TestPage TestPage { set { testPage = value; } }
@@ -29,7 +30,7 @@ namespace FlashCards.TestPage
                 UpdateTestQuestionItem();
             }
         }
-
+        public bool IsTestSubmited { set { isTestSubmited = value; } }
         // constructor
         public TestQuestionItem()
         {
@@ -61,12 +62,30 @@ namespace FlashCards.TestPage
             btnAnswer3.BackColor = SystemColors.ButtonFace;
             btnAnswer4.BackColor = SystemColors.ButtonFace;
 
-            if (testQuestion.IsAnswered)
+            if (isTestSubmited)
             {
-                if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.LightBlue;
-                else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.LightBlue;
-                else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.LightBlue;
-                else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightBlue;
+                if (testQuestion.CorrectAnswerIndex == 0) btnAnswer1.BackColor = Color.LightGreen;
+                else if (testQuestion.CorrectAnswerIndex == 1) btnAnswer2.BackColor = Color.LightGreen;
+                else if (testQuestion.CorrectAnswerIndex == 2) btnAnswer3.BackColor = Color.LightGreen;
+                else if (testQuestion.CorrectAnswerIndex == 3) btnAnswer4.BackColor = Color.LightGreen;
+                
+                if (testQuestion.IsAnswered && !testQuestion.IsCorrect)
+                {
+                    if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.PaleVioletRed;
+                    else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.PaleVioletRed;
+                    else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.PaleVioletRed;
+                    else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.PaleVioletRed;
+                }
+            }
+            else
+            {
+                if (testQuestion.IsAnswered)
+                {
+                    if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.LightBlue;
+                    else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.LightBlue;
+                    else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.LightBlue;
+                    else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightBlue;
+                }
             }
         }
         private void HandleAnswerButtonClick(int buttonIndex)
