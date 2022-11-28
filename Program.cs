@@ -1,4 +1,4 @@
-namespace FlashCards
+namespace FlashCards.WinApp
 {
     internal static class Program
     {

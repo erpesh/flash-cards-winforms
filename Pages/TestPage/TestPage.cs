@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlashCards.Models;
 
 namespace FlashCards.TestPage
 {
@@ -15,7 +16,7 @@ namespace FlashCards.TestPage
         // attributes
         private CardsSet cardsSet;
         private CardsTest cardsTest;
-        private int activeQuestionIndex = 0;
+        private int activeQuestionIndex;
 
         // getters setters
         public CardsSet CardsSet 
@@ -58,7 +59,7 @@ namespace FlashCards.TestPage
             {
                 item.Selected = false;
             }
-            if (lstQuestions.Items.Count > 0) 
+            if (lstQuestions.Items.Count > 0 && activeQuestionIndex >= 0) 
                 lstQuestions.Items[activeQuestionIndex].Selected = true;
         }
         private void QuestionsList_IndexChange(object sender, EventArgs e)
@@ -72,6 +73,7 @@ namespace FlashCards.TestPage
         {
             if (isNext) activeQuestionIndex++;
             else activeQuestionIndex--;
+
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
             SelectListItem();
         }
@@ -91,10 +93,16 @@ namespace FlashCards.TestPage
             UpdateQuestion(true);
             NavigationButtonsUpdate();
         }
-
         private void btnSubmitTest_Click(object sender, EventArgs e)
         {
+            activeQuestionIndex = -1;
             cardsTest.SubmitTest();
+            SelectListItem();
+            lblQuestionsList.Visible = false;
+            lstQuestions.Visible = false;
+            testQuestionItem.Visible = false;
+            btnPrevQuestion.Visible = false;
+            btnSubmitTest.Visible = false;
         }
     }
 }

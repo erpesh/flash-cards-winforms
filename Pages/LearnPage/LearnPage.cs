@@ -8,6 +8,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlashCards.Models;
 
 namespace FlashCards.LearnPage
 {

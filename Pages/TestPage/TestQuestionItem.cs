@@ -7,19 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlashCards.Models;
 
 namespace FlashCards.TestPage
 {
     public partial class TestQuestionItem : UserControl
     {
-        // attributes
-        private enum ButtonIndex
-        {
-            First = 0, 
-            Second = 1, 
-            Third = 2, 
-            Fourth = 3,
-        }
+        // data
         private TestPage testPage;
         private TestQuestion testQuestion;
 
@@ -42,7 +36,18 @@ namespace FlashCards.TestPage
             InitializeComponent();
         }
 
-        //methods
+        // event functions
+        private void btnAnswer_Click(object sender, EventArgs e)
+        {
+            int buttonIndex = 0;
+            if (sender == btnAnswer2) buttonIndex = 1;
+            else if (sender == btnAnswer3) buttonIndex = 2;
+            else if (sender == btnAnswer4) buttonIndex = 3;
+
+            HandleAnswerButtonClick(buttonIndex);
+        }
+
+        // member functions
         private void UpdateTestQuestionItem()
         {
             lblTerm.Text = testQuestion.CardItem.Term;
@@ -64,29 +69,10 @@ namespace FlashCards.TestPage
                 else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightBlue;
             }
         }
-        private void HandleAnswerButtonClick(ButtonIndex buttonIndex)
+        private void HandleAnswerButtonClick(int buttonIndex)
         {
-            testQuestion.AnswerIndex = (int)buttonIndex;
+            testQuestion.AnswerIndex = buttonIndex;
             UpdateTestQuestionItem();
-        }
-        private void btnAnswer1_Click(object sender, EventArgs e)
-        {
-            HandleAnswerButtonClick(ButtonIndex.First);
-        }
-
-        private void btnAnswer2_Click(object sender, EventArgs e)
-        {
-            HandleAnswerButtonClick(ButtonIndex.Second);
-        }
-
-        private void btnAnswer3_Click(object sender, EventArgs e)
-        {
-            HandleAnswerButtonClick(ButtonIndex.Third);
-        }
-
-        private void btnAnswer4_Click(object sender, EventArgs e)
-        {
-            HandleAnswerButtonClick(ButtonIndex.Fourth);
         }
     }
 }

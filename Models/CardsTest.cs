@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlashCards
+namespace FlashCards.Models
 {
     public class CardsTest
     {
@@ -14,7 +14,7 @@ namespace FlashCards
         private bool isTestSubmited = false;
 
         // getters setters
-        public List<TestQuestion> TestQuestions { get { return testQuestions; } } 
+        public List<TestQuestion> TestQuestions { get { return testQuestions; } }
         public bool IsTestSubmitted { get { return isTestSubmited; } }
 
         // constructor

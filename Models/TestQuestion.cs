@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlashCards
+namespace FlashCards.Models
 {
     public class TestQuestion
     {
@@ -41,7 +41,7 @@ namespace FlashCards
 
             GeneratePossibleAnswers();
         }
-        
+
         // methods
         private void GeneratePossibleAnswers()
         {

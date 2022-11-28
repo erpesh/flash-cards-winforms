@@ -1,6 +1,6 @@
 ﻿using FlashCards.MainPage;
 
-namespace FlashCards
+namespace FlashCards.Models
 {
     public class CardsSet
     {
