@@ -18,6 +18,7 @@ namespace FlashCards.TestPage
         private CardsSet cardsSet;
         private CardsTest cardsTest;
         private int activeQuestionIndex;
+        private bool isTestSubmited;
 
         // getters setters
         public CardsSet CardsSet 
@@ -27,6 +28,7 @@ namespace FlashCards.TestPage
                 cardsSet = value;
                 cardsTest = null;
                 activeQuestionIndex = 0;
+                isTestSubmited = false;
             } 
         }
 
@@ -54,6 +56,7 @@ namespace FlashCards.TestPage
             OpenResultsWindow();
 
             cardsTest.SubmitTest();
+            isTestSubmited = true;
             testQuestionItem.IsTestSubmited = true;
             activeQuestionIndex = 0;
             SelectListItem();
@@ -61,11 +64,11 @@ namespace FlashCards.TestPage
 
         // member functions
         public bool IsTestGenerated() { return cardsTest != null; }
-        public void GenerateTest()
+        public void GenerateTest(int numOfQuestions, bool toStarCorrectAnswers, bool useOnlyStarredCards)
         {
-            lstQuestions.Items.Clear();
-            cardsTest = new CardsTest(cardsSet);
+            cardsTest = new CardsTest(cardsSet, numOfQuestions, toStarCorrectAnswers, useOnlyStarredCards);
 
+            lstQuestions.Items.Clear();
             for(int i = 1; i < cardsTest.TestQuestions.Count + 1; i++)
             {
                 string formatedNumber = String.Format("   {0}     ", i > 9 ? i : i + " ");
@@ -103,7 +106,7 @@ namespace FlashCards.TestPage
         {
             btnPrevQuestion.Visible = activeQuestionIndex != 0;
             btnNextQuestion.Visible = activeQuestionIndex != cardsTest.TestQuestions.Count - 1;
-            btnSubmitTest.Visible = activeQuestionIndex == cardsTest.TestQuestions.Count - 1;
+            btnSubmitTest.Visible = !isTestSubmited && activeQuestionIndex == cardsTest.TestQuestions.Count - 1;
         }
         private void OpenResultsWindow()
         {

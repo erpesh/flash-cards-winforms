@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using FlashCards.Models;
+using FlashCards.Pages.TestPage;
 
 namespace FlashCards
 {
@@ -46,9 +47,16 @@ namespace FlashCards
 
         private void btnTestPage_Click(object sender, EventArgs e)
         {
-            testPage1.BringToFront();
-            if (!testPage1.IsTestGenerated())
-                testPage1.GenerateTest();
+            TestSettings ts = new TestSettings(cardsSet);
+            ts.ShowDialog();
+            if (ts.IsFormSubmitted)
+            {
+                testPage1.GenerateTest(
+                    ts.NumOfQuestions, 
+                    ts.ToStarCorrectAnswers, 
+                    ts.UseOnlyStarredCards);
+                testPage1.BringToFront();
+            }
         }
     }
 }

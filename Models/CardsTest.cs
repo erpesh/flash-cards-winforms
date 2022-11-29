@@ -12,23 +12,33 @@ namespace FlashCards.Models
         private CardsSet cardsSet;
         private List<TestQuestion> testQuestions = new();
         private bool isTestSubmited = false;
+        private bool toStarCorrectAnswers;
 
         // getters setters
         public List<TestQuestion> TestQuestions { get { return testQuestions; } }
         public bool IsTestSubmitted { get { return isTestSubmited; } }
 
         // constructor
-        public CardsTest(CardsSet cardsSet)
+        public CardsTest(
+            CardsSet cardsSet,
+            int numOfQuestions,
+            bool toStarCorrectAnswers,
+            bool useOnlyStarredCards)
         {
             this.cardsSet = cardsSet;
-            GenerateQuestions();
+            this.toStarCorrectAnswers = toStarCorrectAnswers;
+            GenerateQuestions(numOfQuestions, useOnlyStarredCards);
         }
 
         // methods
-        private void GenerateQuestions()
+        private void GenerateQuestions(int numOfQuestions, bool useOnlyStarredCards)
         {
-            foreach (CardItem cardItem in cardsSet.Cards)
+            for (int i = 0; i < numOfQuestions; i++)
             {
+                CardItem cardItem = cardsSet.Cards[i];
+                // if useOnlyStarredCards == true the progam is skipping unstarred cards
+                if (useOnlyStarredCards && !cardItem.IsStarred) continue;
+
                 TestQuestion question = new(cardsSet, cardItem);
                 testQuestions.Add(question);
             }
@@ -38,6 +48,16 @@ namespace FlashCards.Models
         public void SubmitTest()
         {
             isTestSubmited = true;
+            if (toStarCorrectAnswers) StarCards();
+        }
+        private void StarCards()
+        {
+            List<CardItem> cards = new();
+            for(int i = 0; i < testQuestions.Count; i++)
+            {
+                if (testQuestions[i].IsCorrect) cards.Add(testQuestions[i].CardItem);
+            }
+            cardsSet.StarCards(cards);
         }
         public int GetNumberOfCorrectAnswers()
         {

@@ -4,22 +4,26 @@ namespace FlashCards.Models
 {
     public class CardsSet
     {
-        private const string filePath = "cards.txt";
+        // Data
         private const char separator = '&';
+        private string filePath = "cards.txt";
         private List<CardItem> cards = new List<CardItem>();
-        public List<CardItem> Cards
-        {
-            get { return cards; }
-        }
+        
+        // getters setters
+        public List<CardItem> Cards { get { return cards; } }
 
-        public CardsSet()
+        // constructor
+        public CardsSet(string filePath = "cards.txt")
         {
+            this.filePath = filePath;
             if (!File.Exists(filePath))
             {
                 File.WriteAllText(filePath, "");
             }
             ReadFromFile();
         }
+
+        // member functions
         private void ReadFromFile()
         {
             List<string> cards = File.ReadAllLines(filePath).ToList();
@@ -62,6 +66,18 @@ namespace FlashCards.Models
                     return cards[index].Definition;
                 }
             }
+        }
+        public List<CardItem> GetStarredCards()
+        {
+            return cards.FindAll(item => item.IsStarred);
+        }
+        public void StarCards(List<CardItem> cardsToStar)
+        {
+            foreach(CardItem card in cards)
+            {
+                if (cardsToStar.Contains(card)) card.IsStarred = true;
+            }
+            WriteToFile();
         }
     }
 }

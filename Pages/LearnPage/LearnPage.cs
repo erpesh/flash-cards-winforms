@@ -68,6 +68,12 @@ namespace FlashCards.LearnPage
         {
             SwitchCardSide();
         }
+        private void pctrStar_Click(object sender, EventArgs e)
+        {
+            cardsSet.Cards[activeCardIndex].IsStarred = !cardsSet.Cards[activeCardIndex].IsStarred;
+            cardsSet.WriteToFile();
+            UpdateCardDisplay();
+        }
 
         // member functions
         private void SwitchCardSide()
@@ -110,12 +116,6 @@ namespace FlashCards.LearnPage
             UpdateCardDisplay();
         }
 
-        private void pctrStar_Click(object sender, EventArgs e)
-        {
-            cardsSet.Cards[activeCardIndex].IsStarred = !cardsSet.Cards[activeCardIndex].IsStarred;
-            cardsSet.WriteToFile();
-            UpdateCardDisplay();
-        }
 
         private void RightPress()
         {
