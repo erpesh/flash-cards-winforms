@@ -29,7 +29,7 @@ namespace FlashCards
         }
         public void UpdateLearnPage()
         {
-            learnPage1.UpdateCardText();
+            learnPage1.UpdateCardDisplay();
         }
         public void ResetTestPage()
         {

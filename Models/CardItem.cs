@@ -10,6 +10,7 @@ namespace FlashCards.Models
     {
         private string term;
         private string definition;
+        private bool isStarred;
         public string Term
         {
             get { return term; }
@@ -20,10 +21,16 @@ namespace FlashCards.Models
             get { return definition; }
             set { definition = value; }
         }
-        public CardItem(string term, string definition)
+        public bool IsStarred
+        {
+            get { return isStarred; }
+            set { isStarred = value; }
+        }
+        public CardItem(string term, string definition, string isStarred = "0")
         {
             this.term = term;
             this.definition = definition;
+            this.isStarred = isStarred == "1";
         }
     }
 }

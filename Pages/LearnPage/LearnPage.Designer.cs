@@ -32,6 +32,8 @@
             this.lblText = new System.Windows.Forms.Label();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
+            this.pctrStar = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).BeginInit();
             this.SuspendLayout();
             // 
             // cardBg
@@ -78,10 +80,22 @@
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
+            // pctrStar
+            // 
+            this.pctrStar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pctrStar.Location = new System.Drawing.Point(682, 93);
+            this.pctrStar.Name = "pctrStar";
+            this.pctrStar.Size = new System.Drawing.Size(24, 24);
+            this.pctrStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctrStar.TabIndex = 4;
+            this.pctrStar.TabStop = false;
+            this.pctrStar.Click += new System.EventHandler(this.pctrStar_Click);
+            // 
             // LearnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pctrStar);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.lblText);
@@ -89,6 +103,7 @@
             this.Name = "LearnPage";
             this.Size = new System.Drawing.Size(952, 593);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LearnPage_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,5 +114,6 @@
         private Label lblText;
         private Button btnLeft;
         private Button btnRight;
+        private PictureBox pctrStar;
     }
 }

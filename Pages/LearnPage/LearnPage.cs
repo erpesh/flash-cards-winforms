@@ -14,66 +14,31 @@ namespace FlashCards.LearnPage
 {
     public partial class LearnPage : UserControl
     {
+        // data
         private CardsSet cardsSet;
         private int activeCardIndex = 0;
         private bool isActiveSideIsTerm = true;
+        private Image blackStar, yellowStar;
+        
+        // getters setters
         public CardsSet CardsSet
         {
             set 
             { 
                 cardsSet = value;
-                UpdateCardText();
+                UpdateCardDisplay();
             }
         }
+        // constructor
         public LearnPage()
         {
             InitializeComponent();
+
+            blackStar = Image.FromFile("star-icon-black.png");
+            yellowStar = Image.FromFile("star-icon-yellow.png");
         }
-        private void SwitchCardSide()
-        {
-            isActiveSideIsTerm = !isActiveSideIsTerm;
-            UpdateCardText();
-        }
-        public void UpdateCardText()
-        {
-            // when there is no cards left
-            if (cardsSet.Cards.Count == 0)
-            {
-                lblText.Text = "";
-                return;
-            }
-            // when the last card was active and got removed
-            if (activeCardIndex >= cardsSet.Cards.Count)
-            {
-                activeCardIndex = cardsSet.Cards.Count - 1;
-            }
-            if (isActiveSideIsTerm)
-            {
-                lblText.Text = cardsSet.Cards[activeCardIndex].Term;
-            }
-            else
-            {
-                lblText.Text = cardsSet.Cards[activeCardIndex].Definition;
-            }
-        }
-        private void LeftPress()
-        {
-            if (activeCardIndex == 0)
-            {
-                activeCardIndex = cardsSet.Cards.Count - 1;
-            }
-            else activeCardIndex--;
-            UpdateCardText();
-        }
-        private void RightPress()
-        {
-            if (activeCardIndex == cardsSet.Cards.Count - 1)
-            {
-                activeCardIndex = 0;
-            }
-            else activeCardIndex++;
-            UpdateCardText();
-        }
+        
+        // event functions
         private void LearnPage_KeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyValue == 32)
@@ -99,10 +64,67 @@ namespace FlashCards.LearnPage
         {
             RightPress();
         }
-
         private void Card_Click(object sender, EventArgs e)
         {
             SwitchCardSide();
+        }
+
+        // member functions
+        private void SwitchCardSide()
+        {
+            isActiveSideIsTerm = !isActiveSideIsTerm;
+            UpdateCardDisplay();
+        }
+        public void UpdateCardDisplay()
+        {
+            // when there is no cards left
+            if (cardsSet.Cards.Count == 0)
+            {
+                lblText.Text = "";
+                return;
+            }
+            // when the last card was active and got removed
+            CardItem activeCard = cardsSet.Cards[activeCardIndex];
+            if (activeCardIndex >= cardsSet.Cards.Count)
+            {
+                activeCardIndex = cardsSet.Cards.Count - 1;
+            }
+            if (isActiveSideIsTerm)
+            {
+                lblText.Text = activeCard.Term;
+            }
+            else
+            {
+                lblText.Text = activeCard.Definition;
+            }
+            // set the star
+            pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;
+        }
+        private void LeftPress()
+        {
+            if (activeCardIndex == 0)
+            {
+                activeCardIndex = cardsSet.Cards.Count - 1;
+            }
+            else activeCardIndex--;
+            UpdateCardDisplay();
+        }
+
+        private void pctrStar_Click(object sender, EventArgs e)
+        {
+            cardsSet.Cards[activeCardIndex].IsStarred = !cardsSet.Cards[activeCardIndex].IsStarred;
+            cardsSet.WriteToFile();
+            UpdateCardDisplay();
+        }
+
+        private void RightPress()
+        {
+            if (activeCardIndex == cardsSet.Cards.Count - 1)
+            {
+                activeCardIndex = 0;
+            }
+            else activeCardIndex++;
+            UpdateCardDisplay();
         }
     }
 }

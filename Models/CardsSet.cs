@@ -26,7 +26,7 @@ namespace FlashCards.Models
             foreach (string card in cards)
             {
                 var splitCard = card.Split(separator);
-                var newCardItem = new CardItem(splitCard[0], splitCard[1]);
+                var newCardItem = new CardItem(splitCard[0], splitCard[1], splitCard[2]);
                 this.cards.Add(newCardItem);
             }
         }
@@ -35,7 +35,9 @@ namespace FlashCards.Models
             List<string> stringCards = new List<string>();
             foreach (CardItem card in cards)
             {
-                stringCards.Add(card.Term + separator + card.Definition);
+                string cardString = card.Term + separator + card.Definition + separator +
+                    (card.IsStarred ? "1" : "0");
+                stringCards.Add(cardString);
             }
             File.WriteAllLines(filePath, stringCards);
         }
