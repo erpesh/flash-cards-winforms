@@ -72,7 +72,7 @@
             this.lblError.Size = new System.Drawing.Size(0, 20);
             this.lblError.TabIndex = 3;
             // 
-            // CardSetName
+            // CardSetNameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,7 +81,8 @@
             this.Controls.Add(this.btnCreateCardSet);
             this.Controls.Add(this.tbCardSetName);
             this.Controls.Add(this.lblTitle);
-            this.Name = "CardSetName";
+            this.Name = "CardSetNameForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Card Set Name";
             this.ResumeLayout(false);
             this.PerformLayout();

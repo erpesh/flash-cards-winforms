@@ -30,11 +30,11 @@ namespace FlashCards.StartForm
         private void btnCreateCardSet_Click(object sender, EventArgs e)
         {
             if (cardSetsTitles.Contains(tbCardSetName.Text))
-                lblError.Text = "This card set name already exists";
+                lblError.Text = "This name already exists";
             else if (tbCardSetName.Text.Length < 4)
-                lblError.Text = "The name is too short";
+                lblError.Text = "This name is too short";
             else if (tbCardSetName.Text.Length > 25)
-                lblError.Text = "The name is too long";
+                lblError.Text = "This name is too long";
             else
             {
                 isFormSubmited = true;

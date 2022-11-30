@@ -13,7 +13,7 @@ namespace FlashCards.MainPage
 {
     public partial class MainPage : UserControl
     {
-        // attributes
+        // data
         private MainForm mainForm;
         private CardsSet cardsSet;
 
@@ -44,22 +44,10 @@ namespace FlashCards.MainPage
             //yourToolTip.SetToolTip(lblTerm, "Oooh, you put your mouse over me.");
         }
 
-        // methods
+        // event functions
         private void MainPage_Load(object sender, EventArgs e)
         {
             DisplayCards();
-        }
-        private void DisplayCards()
-        {
-            cardsPanel.Controls.Clear();
-            foreach (CardItem card in cardsSet.Cards)
-            {
-                CardListItem cardListItem = new CardListItem();
-                cardListItem.MainPage = this;
-                cardListItem.Card = card;
-                cardListItem.RemoveCard = cardsSet.RemoveCard;
-                cardsPanel.Controls.Add(cardListItem);
-            }
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
@@ -79,6 +67,25 @@ namespace FlashCards.MainPage
         {
             mainForm.UpdateLearnPage();
             mainForm.ResetTestPage();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            mainForm.DeleteCardSet();
+        }
+        // member functions
+        private void DisplayCards()
+        {
+            lblCardSetName.Text = cardsSet.CardSetName;
+            cardsPanel.Controls.Clear();
+            foreach (CardItem card in cardsSet.Cards)
+            {
+                CardListItem cardListItem = new CardListItem();
+                cardListItem.MainPage = this;
+                cardListItem.Card = card;
+                cardListItem.RemoveCard = cardsSet.RemoveCard;
+                cardsPanel.Controls.Add(cardListItem);
+            }
         }
     }
 }

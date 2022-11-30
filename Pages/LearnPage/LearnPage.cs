@@ -34,10 +34,10 @@ namespace FlashCards.LearnPage
         {
             InitializeComponent();
 
-            blackStar = Image.FromFile("icons/star-icon-black.png");
-            yellowStar = Image.FromFile("icons/star-icon-yellow.png");
-            btnLeft.BackgroundImage = Image.FromFile("icons/chevron-left.png");
-            btnRight.BackgroundImage = Image.FromFile("icons/chevron-right.png");
+            //blackStar = Image.FromFile("icons/star-icon-black.png");
+            //yellowStar = Image.FromFile("icons/star-icon-yellow.png");
+            //btnLeft.BackgroundImage = Image.FromFile("icons/chevron-left.png");
+            //btnRight.BackgroundImage = Image.FromFile("icons/chevron-right.png");
             btnLeft.Enabled = false;
             btnRight.Enabled = false;
         }

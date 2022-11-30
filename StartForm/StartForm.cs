@@ -1,4 +1,5 @@
-﻿using FlashCards.StartForm;
+﻿using FlashCards.Models;
+using FlashCards.StartForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,7 +79,23 @@ namespace FlashCards.StartForm
         {
             Hide();
             MainForm mf = new(name);
-            mf.Show();
+            mf.ShowDialog();
+
+            if (mf.IsGoBackToSetsList)
+            {
+                Show();
+
+                if (mf.IsCardSetDeleted) 
+                    DeleteCardSet(mf.CardsSet);
+                UpdateListOfSets();
+            }
+            else Close();
+        }
+        private void DeleteCardSet(CardsSet cardsSet)
+        {
+            cardSetsNames.Remove(cardsSet.CardSetName);
+            WriteToFile();
+            File.Delete(cardsSet.FilePath);
         }
     }
 }

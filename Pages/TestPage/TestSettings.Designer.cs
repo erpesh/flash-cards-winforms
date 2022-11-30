@@ -175,6 +175,7 @@
             this.Controls.Add(this.lblNumberOfQuestions);
             this.Controls.Add(this.nudNumberOfQuestions);
             this.Name = "TestSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Test Settings";
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfQuestions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTimeInMinutes)).EndInit();

@@ -6,11 +6,22 @@ namespace FlashCards
 {
     public partial class MainForm : Form
     {
+        // data
         private CardsSet cardsSet;
+        private bool isGoBackToSetsList;
+        private bool isCardSetDeleted;
+
+        // getters setters
+        public CardsSet CardsSet { get { return cardsSet; } }
+        public bool IsGoBackToSetsList { get { return isGoBackToSetsList; } }
+        public bool IsCardSetDeleted { get { return isCardSetDeleted; } }
+
+        // constructor
         public MainForm(string cardSetName)
         {
             InitializeComponent();
 
+            btnGoBack.BackgroundImage = Image.FromFile("icons/arrow-left.png");
             cardsSet = new CardsSet(cardSetName);
             mainPage1.BringToFront();
             mainPage1.MainForm = this;
@@ -29,14 +40,7 @@ namespace FlashCards
                 return true;
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        public void UpdateLearnPage()
-        {
-            learnPage1.UpdateCardDisplay();
-        }
-        public void ResetTestPage()
-        {
-            testPage1.CardsSet = cardsSet;
-        }
+        // event functions
         private void btnMainPage_Click(object sender, EventArgs e)
         {
             mainPage1.BringToFront();
@@ -45,7 +49,6 @@ namespace FlashCards
         {
             learnPage1.BringToFront();
         }
-
         private void btnTestPage_Click(object sender, EventArgs e)
         {
             TestSettings ts = new TestSettings(cardsSet);
@@ -60,6 +63,27 @@ namespace FlashCards
                     ts.UseOnlyStarredCards);
                 testPage1.BringToFront();
             }
+        }
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            isGoBackToSetsList = true;
+            Close();
+        }
+
+        // member functions
+        public void UpdateLearnPage()
+        {
+            learnPage1.UpdateCardDisplay();
+        }
+        public void ResetTestPage()
+        {
+            testPage1.CardsSet = cardsSet;
+        }
+        public void DeleteCardSet()
+        {
+            isGoBackToSetsList = true;
+            isCardSetDeleted = true;
+            Close();
         }
     }
 }

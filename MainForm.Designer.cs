@@ -31,10 +31,11 @@
             this.headerBg = new System.Windows.Forms.Label();
             this.btnMainPage = new System.Windows.Forms.Button();
             this.btnLearnPage = new System.Windows.Forms.Button();
-            this.learnPage1 = new FlashCards.LearnPage.LearnPage();
             this.mainPage1 = new FlashCards.MainPage.MainPage();
             this.btnTestPage = new System.Windows.Forms.Button();
             this.testPage1 = new FlashCards.TestPage.TestPage();
+            this.btnGoBack = new System.Windows.Forms.Button();
+            this.learnPage1 = new FlashCards.LearnPage.LearnPage();
             this.SuspendLayout();
             // 
             // headerBg
@@ -65,13 +66,6 @@
             this.btnLearnPage.UseVisualStyleBackColor = true;
             this.btnLearnPage.Click += new System.EventHandler(this.btnLearnPage_Click);
             // 
-            // learnPage1
-            // 
-            this.learnPage1.Location = new System.Drawing.Point(-3, 54);
-            this.learnPage1.Name = "learnPage1";
-            this.learnPage1.Size = new System.Drawing.Size(937, 494);
-            this.learnPage1.TabIndex = 3;
-            // 
             // mainPage1
             // 
             this.mainPage1.CardsSet = null;
@@ -98,15 +92,38 @@
             this.testPage1.Size = new System.Drawing.Size(937, 494);
             this.testPage1.TabIndex = 3;
             // 
+            // btnGoBack
+            // 
+            this.btnGoBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnGoBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGoBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGoBack.FlatAppearance.BorderSize = 0;
+            this.btnGoBack.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnGoBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoBack.Location = new System.Drawing.Point(12, 12);
+            this.btnGoBack.Name = "btnGoBack";
+            this.btnGoBack.Size = new System.Drawing.Size(39, 29);
+            this.btnGoBack.TabIndex = 5;
+            this.btnGoBack.UseVisualStyleBackColor = false;
+            this.btnGoBack.Click += new System.EventHandler(this.btnGoBack_Click);
+            // 
+            // learnPage1
+            // 
+            this.learnPage1.Location = new System.Drawing.Point(-3, 54);
+            this.learnPage1.Name = "learnPage1";
+            this.learnPage1.Size = new System.Drawing.Size(937, 494);
+            this.learnPage1.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 546);
+            this.Controls.Add(this.learnPage1);
+            this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.testPage1);
             this.Controls.Add(this.btnTestPage);
             this.Controls.Add(this.mainPage1);
-            this.Controls.Add(this.learnPage1);
             this.Controls.Add(this.btnLearnPage);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.headerBg);
@@ -123,9 +140,10 @@
         private Label headerBg;
         private Button btnMainPage;
         private Button btnLearnPage;
-        private LearnPage.LearnPage learnPage1;
         private MainPage.MainPage mainPage1;
         private Button btnTestPage;
         private TestPage.TestPage testPage1;
+        private Button btnGoBack;
+        private LearnPage.LearnPage learnPage1;
     }
 }
