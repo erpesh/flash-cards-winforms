@@ -51,6 +51,7 @@ namespace FlashCards
             ts.ShowDialog();
             if (ts.IsFormSubmitted)
             {
+                testPage1.TimeInSeconds = ts.TimeInMinutes * 6;
                 testPage1.GenerateTest(
                     ts.NumOfQuestions, 
                     ts.ToStarCorrectAnswers, 

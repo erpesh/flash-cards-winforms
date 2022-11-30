@@ -18,12 +18,14 @@ namespace FlashCards.Pages.TestPage
         private int numOfQuestions;
         private bool toStarCorrectAnswers;
         private bool useOnlyStarredCards;
+        private int timeInMinutes;
         private bool isFormSubmitted;
 
         // getters setters
         public int NumOfQuestions { get { return numOfQuestions; } }
         public bool ToStarCorrectAnswers { get { return toStarCorrectAnswers; } }
         public bool UseOnlyStarredCards { get { return useOnlyStarredCards; } }
+        public int TimeInMinutes { get { return timeInMinutes; } }
         public bool IsFormSubmitted { get { return isFormSubmitted; } }
         
         // constructor
@@ -31,41 +33,40 @@ namespace FlashCards.Pages.TestPage
         {
             InitializeComponent();
             this.cardsSet = cardsSet;
+            ManageControls();
         }
         
         // event functions
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (CheckNumOfQuestions())
-            {
-                isFormSubmitted = true;
-                toStarCorrectAnswers = cbStarCorrect.Checked;
-                useOnlyStarredCards = cbUseStarred.Checked;
-                numOfQuestions = (int)nudNumberOfQuestions.Value;
-                Close();
-            }
+            isFormSubmitted = true;
+            toStarCorrectAnswers = cbStarCorrect.Checked;
+            useOnlyStarredCards = cbUseStarred.Checked;
+            numOfQuestions = (int)nudNumberOfQuestions.Value;
+            timeInMinutes = cbUseTimer.Checked ? (int)nudTimeInMinutes.Value : 0;
+            Close();
+        }
+        private void cbUseTimer_CheckedChanged(object sender, EventArgs e)
+        {
+            nudTimeInMinutes.Enabled = !nudTimeInMinutes.Enabled;
         }
         
         // member functions
-        private bool CheckNumOfQuestions()
+        private void ManageControls()
         {
-            if (nudNumberOfQuestions.Value <= 5)
+            int numOfStarredCards = cardsSet.GetNumberOfStarredCards();
+            if (numOfStarredCards < 6)
             {
-                lblError.Text = "Number of questions should be greater than 5";
-                return false;
-            }
-            if (cbUseStarred.Checked)
-            {
-                int numOfStarredQuestions = cardsSet.GetStarredCards().Count;
-                bool condition = nudNumberOfQuestions.Value <= numOfStarredQuestions;
-                if (!condition) lblError.Text = "There are only " + numOfStarredQuestions + " starred cards"; ;
-                return condition;
+                cbUseStarred.Enabled = false;
             }
             else
             {
-                bool condition = nudNumberOfQuestions.Value <= cardsSet.Cards.Count;
-                if (!condition) lblError.Text = "There are only " + cardsSet.Cards.Count + " cards";
-                return condition;
+                cbUseStarred.Enabled = true;
+                nudNumberOfQuestions.Maximum = numOfStarredCards;
+            }
+            if (!cbUseStarred.Enabled)
+            {
+                nudNumberOfQuestions.Maximum = cardsSet.Cards.Count;
             }
         }
     }

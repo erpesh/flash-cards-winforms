@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblQuestionsList = new System.Windows.Forms.Label();
             this.testQuestionItem = new FlashCards.TestPage.TestQuestionItem();
             this.lstQuestions = new System.Windows.Forms.ListView();
             this.btnSubmitTest = new System.Windows.Forms.Button();
             this.btnPrevQuestion = new System.Windows.Forms.Button();
             this.btnNextQuestion = new System.Windows.Forms.Button();
+            this.lblTimerTitle = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblQuestionsList
@@ -49,7 +53,7 @@
             // testQuestionItem
             // 
             this.testQuestionItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.testQuestionItem.Location = new System.Drawing.Point(206, 23);
+            this.testQuestionItem.Location = new System.Drawing.Point(158, 44);
             this.testQuestionItem.Name = "testQuestionItem";
             this.testQuestionItem.Size = new System.Drawing.Size(616, 354);
             this.testQuestionItem.TabIndex = 2;
@@ -70,7 +74,7 @@
             // btnSubmitTest
             // 
             this.btnSubmitTest.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSubmitTest.Location = new System.Drawing.Point(679, 404);
+            this.btnSubmitTest.Location = new System.Drawing.Point(634, 421);
             this.btnSubmitTest.Name = "btnSubmitTest";
             this.btnSubmitTest.Size = new System.Drawing.Size(203, 50);
             this.btnSubmitTest.TabIndex = 4;
@@ -82,7 +86,7 @@
             // btnPrevQuestion
             // 
             this.btnPrevQuestion.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnPrevQuestion.Location = new System.Drawing.Point(135, 404);
+            this.btnPrevQuestion.Location = new System.Drawing.Point(90, 421);
             this.btnPrevQuestion.Name = "btnPrevQuestion";
             this.btnPrevQuestion.Size = new System.Drawing.Size(203, 50);
             this.btnPrevQuestion.TabIndex = 5;
@@ -94,7 +98,7 @@
             // btnNextQuestion
             // 
             this.btnNextQuestion.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNextQuestion.Location = new System.Drawing.Point(679, 404);
+            this.btnNextQuestion.Location = new System.Drawing.Point(634, 421);
             this.btnNextQuestion.Name = "btnNextQuestion";
             this.btnNextQuestion.Size = new System.Drawing.Size(203, 50);
             this.btnNextQuestion.TabIndex = 6;
@@ -102,10 +106,37 @@
             this.btnNextQuestion.UseVisualStyleBackColor = true;
             this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
             // 
+            // lblTimerTitle
+            // 
+            this.lblTimerTitle.AutoSize = true;
+            this.lblTimerTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTimerTitle.Location = new System.Drawing.Point(805, 13);
+            this.lblTimerTitle.Name = "lblTimerTitle";
+            this.lblTimerTitle.Size = new System.Drawing.Size(126, 37);
+            this.lblTimerTitle.TabIndex = 7;
+            this.lblTimerTitle.Text = "Time Left";
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTime.Location = new System.Drawing.Point(839, 60);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(66, 30);
+            this.lblTime.TabIndex = 8;
+            this.lblTime.Text = "03:12";
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // TestPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.lblTimerTitle);
             this.Controls.Add(this.btnNextQuestion);
             this.Controls.Add(this.btnPrevQuestion);
             this.Controls.Add(this.btnSubmitTest);
@@ -126,5 +157,8 @@
         private Button btnSubmitTest;
         private Button btnPrevQuestion;
         private Button btnNextQuestion;
+        private Label lblTimerTitle;
+        private Label lblTime;
+        private System.Windows.Forms.Timer timer;
     }
 }

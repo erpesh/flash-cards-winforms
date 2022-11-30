@@ -1,3 +1,5 @@
+using FlashCards.Pages.TestPage;
+
 namespace FlashCards.WinApp
 {
     internal static class Program

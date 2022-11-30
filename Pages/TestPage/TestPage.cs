@@ -19,17 +19,17 @@ namespace FlashCards.TestPage
         private CardsTest cardsTest;
         private int activeQuestionIndex;
         private bool isTestSubmited;
+        private int timeInSeconds;
 
         // getters setters
-        public CardsSet CardsSet 
-        { 
-            set 
-            { 
-                cardsSet = value;
-                cardsTest = null;
-                activeQuestionIndex = 0;
-                isTestSubmited = false;
-            } 
+        public CardsSet CardsSet { set { cardsSet = value; } }
+        public int TimeInSeconds
+        {
+            set
+            {
+                timeInSeconds = value;
+                lblTime.Text = TimeToString();
+            }
         }
 
         // constructor
@@ -53,19 +53,32 @@ namespace FlashCards.TestPage
         }
         private void btnSubmitTest_Click(object sender, EventArgs e)
         {
-            OpenResultsWindow();
+            SubmitTest();
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (timeInSeconds == 0) 
+            {
+                timer.Stop();
+                SubmitTest();
+            }
 
-            cardsTest.SubmitTest();
-            isTestSubmited = true;
-            testQuestionItem.IsTestSubmited = true;
-            activeQuestionIndex = 0;
-            SelectListItem();
+            string timeString = TimeToString();
+            timeInSeconds--;
+            lblTime.Text = timeString;
         }
 
         // member functions
-        public bool IsTestGenerated() { return cardsTest != null; }
+        private void Reset()
+        {
+            cardsTest = null;
+            activeQuestionIndex = 0;
+            isTestSubmited = false;
+            testQuestionItem.IsTestSubmited = false;
+        }
         public void GenerateTest(int numOfQuestions, bool toStarCorrectAnswers, bool useOnlyStarredCards)
         {
+            Reset();
             cardsTest = new CardsTest(cardsSet, numOfQuestions, toStarCorrectAnswers, useOnlyStarredCards);
 
             lstQuestions.Items.Clear();
@@ -77,6 +90,7 @@ namespace FlashCards.TestPage
 
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
             SelectListItem();
+            StartTimer();
         }
         private void SelectListItem()
         {
@@ -115,6 +129,32 @@ namespace FlashCards.TestPage
             int numberOfIncorrectAnswers = cardsTest.TestQuestions.Count - numberOfCorrectAnswers;
             tr.SetTestResults(numberOfCorrectAnswers, numberOfIncorrectAnswers);
             tr.ShowDialog();
+        }
+        private void SubmitTest()
+        {
+            OpenResultsWindow();
+
+            cardsTest.SubmitTest();
+            isTestSubmited = true;
+            testQuestionItem.IsTestSubmited = true;
+            activeQuestionIndex = 0;
+            SelectListItem();
+        }
+        private void StartTimer()
+        {
+            if (timeInSeconds != 0) timer.Start();
+            else
+            {
+                lblTimerTitle.Visible = false;
+                lblTime.Visible = false;
+            }
+        }
+        private string TimeToString()
+        {
+            int seconds = timeInSeconds % 60;
+            int minutes = timeInSeconds / 60;
+            string timeString = string.Format("{0:D2}:{1:D2}", minutes, seconds);
+            return timeString;
         }
     }
 }

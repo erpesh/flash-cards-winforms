@@ -67,9 +67,9 @@ namespace FlashCards.Models
                 }
             }
         }
-        public List<CardItem> GetStarredCards()
+        public int GetNumberOfStarredCards()
         {
-            return cards.FindAll(item => item.IsStarred);
+            return cards.FindAll(item => item.IsStarred).Count;
         }
         public void StarCards(List<CardItem> cardsToStar)
         {

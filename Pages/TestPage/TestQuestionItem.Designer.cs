@@ -48,11 +48,10 @@
             // 
             // lblTerm
             // 
-            this.lblTerm.AutoSize = true;
             this.lblTerm.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTerm.Location = new System.Drawing.Point(14, 55);
+            this.lblTerm.Location = new System.Drawing.Point(24, 55);
             this.lblTerm.Name = "lblTerm";
-            this.lblTerm.Size = new System.Drawing.Size(119, 31);
+            this.lblTerm.Size = new System.Drawing.Size(569, 111);
             this.lblTerm.TabIndex = 1;
             this.lblTerm.Text = "TermValue";
             // 
