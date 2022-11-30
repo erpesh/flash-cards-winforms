@@ -57,11 +57,7 @@ namespace FlashCards.TestPage
         }
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (timeInSeconds == 0) 
-            {
-                timer.Stop();
-                SubmitTest();
-            }
+            if (timeInSeconds == 0) SubmitTest();
 
             string timeString = TimeToString();
             timeInSeconds--;
@@ -132,6 +128,7 @@ namespace FlashCards.TestPage
         }
         private void SubmitTest()
         {
+            timer.Stop();
             OpenResultsWindow();
 
             cardsTest.SubmitTest();

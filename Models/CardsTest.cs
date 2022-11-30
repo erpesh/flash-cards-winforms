@@ -8,10 +8,10 @@ namespace FlashCards.Models
 {
     public class CardsTest
     {
-        // attributes
+        // data
         private CardsSet cardsSet;
         private List<TestQuestion> testQuestions = new();
-        private bool isTestSubmited = false;
+        private bool isTestSubmited;
         private bool toStarCorrectAnswers;
 
         // getters setters
@@ -30,7 +30,7 @@ namespace FlashCards.Models
             GenerateQuestions(numOfQuestions, useOnlyStarredCards);
         }
 
-        // methods
+        // functions
         private void GenerateQuestions(int numOfQuestions, bool useOnlyStarredCards)
         {
             for (int i = 0; i < numOfQuestions; i++)

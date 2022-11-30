@@ -34,28 +34,46 @@ namespace FlashCards.Pages.TestPage
             InitializeComponent();
             this.cardsSet = cardsSet;
             ManageControls();
+
+            timeInMinutes = (int)nudNumberOfQuestions.Minimum;
         }
         
         // event functions
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             isFormSubmitted = true;
-            toStarCorrectAnswers = cbStarCorrect.Checked;
-            useOnlyStarredCards = cbUseStarred.Checked;
-            numOfQuestions = (int)nudNumberOfQuestions.Value;
-            timeInMinutes = cbUseTimer.Checked ? (int)nudTimeInMinutes.Value : 0;
             Close();
+        }
+        private void nudNumberOfQuestions_ValueChanged(object sender, EventArgs e)
+        {
+            numOfQuestions = (int)nudNumberOfQuestions.Value;
+        }
+        private void cbStarCorrect_CheckedChanged(object sender, EventArgs e)
+        {
+            toStarCorrectAnswers = cbStarCorrect.Checked;
+        }
+        private void cbUseStarred_CheckedChanged(object sender, EventArgs e)
+        {
+            useOnlyStarredCards = cbUseStarred.Checked;
+            ManageControls();
         }
         private void cbUseTimer_CheckedChanged(object sender, EventArgs e)
         {
             nudTimeInMinutes.Enabled = !nudTimeInMinutes.Enabled;
+            timeInMinutes = cbUseTimer.Checked ? (int)nudTimeInMinutes.Value : 0;
+        }
+
+
+        private void nudTimeInMinutes_ValueChanged(object sender, EventArgs e)
+        {
+            timeInMinutes = (int)nudTimeInMinutes.Value;
         }
         
         // member functions
         private void ManageControls()
         {
             int numOfStarredCards = cardsSet.GetNumberOfStarredCards();
-            if (numOfStarredCards < 6)
+            if (numOfStarredCards < nudNumberOfQuestions.Minimum)
             {
                 cbUseStarred.Enabled = false;
             }
@@ -64,10 +82,11 @@ namespace FlashCards.Pages.TestPage
                 cbUseStarred.Enabled = true;
                 nudNumberOfQuestions.Maximum = numOfStarredCards;
             }
-            if (!cbUseStarred.Enabled)
+            if (!cbUseStarred.Checked)
             {
                 nudNumberOfQuestions.Maximum = cardsSet.Cards.Count;
             }
         }
+
     }
 }

@@ -45,7 +45,7 @@
             // 
             this.nudNumberOfQuestions.Location = new System.Drawing.Point(26, 71);
             this.nudNumberOfQuestions.Minimum = new decimal(new int[] {
-            6,
+            4,
             0,
             0,
             0});
@@ -53,10 +53,11 @@
             this.nudNumberOfQuestions.Size = new System.Drawing.Size(55, 27);
             this.nudNumberOfQuestions.TabIndex = 0;
             this.nudNumberOfQuestions.Value = new decimal(new int[] {
-            6,
+            4,
             0,
             0,
             0});
+            this.nudNumberOfQuestions.ValueChanged += new System.EventHandler(this.nudNumberOfQuestions_ValueChanged);
             // 
             // lblNumberOfQuestions
             // 
@@ -99,6 +100,7 @@
             this.cbUseStarred.TabIndex = 7;
             this.cbUseStarred.Text = "Use only starred cards";
             this.cbUseStarred.UseVisualStyleBackColor = true;
+            this.cbUseStarred.CheckedChanged += new System.EventHandler(this.cbUseStarred_CheckedChanged);
             // 
             // cbStarCorrect
             // 
@@ -110,6 +112,7 @@
             this.cbStarCorrect.TabIndex = 8;
             this.cbStarCorrect.Text = "To star correct answers";
             this.cbStarCorrect.UseVisualStyleBackColor = true;
+            this.cbStarCorrect.CheckedChanged += new System.EventHandler(this.cbStarCorrect_CheckedChanged);
             // 
             // cbUseTimer
             // 
@@ -145,6 +148,7 @@
             0,
             0,
             0});
+            this.nudTimeInMinutes.ValueChanged += new System.EventHandler(this.nudTimeInMinutes_ValueChanged);
             // 
             // label1
             // 
