@@ -6,11 +6,12 @@ namespace FlashCards
 {
     public partial class MainForm : Form
     {
-        private CardsSet cardsSet = new CardsSet();
-        public MainForm()
+        private CardsSet cardsSet;
+        public MainForm(string cardSetName)
         {
             InitializeComponent();
 
+            cardsSet = new CardsSet(cardSetName);
             mainPage1.BringToFront();
             mainPage1.MainForm = this;
             mainPage1.CardsSet = cardsSet;

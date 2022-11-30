@@ -6,16 +6,18 @@ namespace FlashCards.Models
     {
         // Data
         private const char separator = '&';
-        private string filePath = "cards.txt";
+        private string cardSetName;
+        private string filePath;
         private List<CardItem> cards = new List<CardItem>();
-        
+
         // getters setters
         public List<CardItem> Cards { get { return cards; } }
 
         // constructor
-        public CardsSet(string filePath = "cards.txt")
+        public CardsSet(string cardSetName = "cards.txt")
         {
-            this.filePath = filePath;
+            this.cardSetName = cardSetName;
+            this.filePath = "card-sets/" + cardSetName + ".txt";
             if (!File.Exists(filePath))
             {
                 File.WriteAllText(filePath, "");
