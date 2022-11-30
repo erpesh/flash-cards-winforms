@@ -35,7 +35,8 @@ namespace FlashCards.Pages.TestPage
             this.cardsSet = cardsSet;
             ManageControls();
 
-            timeInMinutes = (int)nudNumberOfQuestions.Minimum;
+            numOfQuestions = (int)nudNumberOfQuestions.Minimum;
+            timeInMinutes = (int)nudTimeInMinutes.Minimum;
         }
         
         // event functions

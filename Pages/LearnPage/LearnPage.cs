@@ -105,6 +105,7 @@ namespace FlashCards.LearnPage
             {
                 lblText.Text = activeCard.Definition;
             }
+            // sets smaller font size if text is too long
             if (lblText.Text.Length > 100) lblText.Font = new Font("Segoe UI", 16, FontStyle.Regular);
             // set the star
             pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;

@@ -74,6 +74,7 @@
             this.btnAnswer1.Text = "button1";
             this.btnAnswer1.UseVisualStyleBackColor = false;
             this.btnAnswer1.Click += new System.EventHandler(this.btnAnswer_Click);
+            this.btnAnswer1.MouseHover += new System.EventHandler(this.btnAnswer_Hover);
             // 
             // btnAnswer2
             // 
@@ -86,6 +87,7 @@
             this.btnAnswer2.Text = "button2";
             this.btnAnswer2.UseVisualStyleBackColor = false;
             this.btnAnswer2.Click += new System.EventHandler(this.btnAnswer_Click);
+            this.btnAnswer2.MouseHover += new System.EventHandler(this.btnAnswer_Hover);
             // 
             // btnAnswer3
             // 
@@ -98,6 +100,7 @@
             this.btnAnswer3.Text = "button3";
             this.btnAnswer3.UseVisualStyleBackColor = false;
             this.btnAnswer3.Click += new System.EventHandler(this.btnAnswer_Click);
+            this.btnAnswer3.MouseHover += new System.EventHandler(this.btnAnswer_Hover);
             // 
             // btnAnswer4
             // 
@@ -110,6 +113,7 @@
             this.btnAnswer4.Text = "button4";
             this.btnAnswer4.UseVisualStyleBackColor = false;
             this.btnAnswer4.Click += new System.EventHandler(this.btnAnswer_Click);
+            this.btnAnswer4.MouseHover += new System.EventHandler(this.btnAnswer_Hover);
             // 
             // TestQuestionItem
             // 

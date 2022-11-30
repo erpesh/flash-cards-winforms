@@ -27,6 +27,7 @@ namespace FlashCards.Models
         {
             this.cardsSet = cardsSet;
             this.toStarCorrectAnswers = toStarCorrectAnswers;
+
             GenerateQuestions(numOfQuestions, useOnlyStarredCards);
         }
 

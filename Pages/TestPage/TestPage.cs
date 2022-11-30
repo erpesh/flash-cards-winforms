@@ -36,8 +36,6 @@ namespace FlashCards.TestPage
         public TestPage()
         {
             InitializeComponent();
-
-            testQuestionItem.TestPage = this;
         }
 
         // event functions

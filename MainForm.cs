@@ -49,6 +49,7 @@ namespace FlashCards
         {
             TestSettings ts = new TestSettings(cardsSet);
             ts.ShowDialog();
+
             if (ts.IsFormSubmitted)
             {
                 testPage1.TimeInSeconds = ts.TimeInMinutes * 60;

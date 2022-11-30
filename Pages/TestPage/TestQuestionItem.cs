@@ -14,12 +14,10 @@ namespace FlashCards.TestPage
     public partial class TestQuestionItem : UserControl
     {
         // data
-        private TestPage testPage;
         private TestQuestion testQuestion;
         private bool isTestSubmited;
 
         // getters setters
-        public TestPage TestPage { set { testPage = value; } }
         public TestQuestion TestQuestion
         {
             get { return testQuestion; }
@@ -47,20 +45,32 @@ namespace FlashCards.TestPage
 
             HandleAnswerButtonClick(buttonIndex);
         }
+        private void btnAnswer_Hover(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn.Text.Length > 20)
+            {
+                ToolTip toolTip = new ToolTip();
+                toolTip.Show(AddNewLinesToString(btn.Text), btn, 30000);
+            }
+        }
+
+        // remove answer on click
+
 
         // member functions
+        private void UpdateAnswerButton(Button btn, int index)
+        {
+            btn.Text = testQuestion.PossibleAnswers[index];
+            btn.BackColor = SystemColors.ButtonFace;
+        }
         private void UpdateTestQuestionItem()
         {
             lblTerm.Text = testQuestion.CardItem.Term;
-            btnAnswer1.Text = testQuestion.PossibleAnswers[0];
-            btnAnswer2.Text = testQuestion.PossibleAnswers[1];
-            btnAnswer3.Text = testQuestion.PossibleAnswers[2];
-            btnAnswer4.Text = testQuestion.PossibleAnswers[3];
-
-            btnAnswer1.BackColor = SystemColors.ButtonFace;
-            btnAnswer2.BackColor = SystemColors.ButtonFace;
-            btnAnswer3.BackColor = SystemColors.ButtonFace;
-            btnAnswer4.BackColor = SystemColors.ButtonFace;
+            UpdateAnswerButton(btnAnswer1, 0);
+            UpdateAnswerButton(btnAnswer2, 1);
+            UpdateAnswerButton(btnAnswer3, 2);
+            UpdateAnswerButton(btnAnswer4, 3);
 
             if (isTestSubmited)
             {
@@ -92,6 +102,13 @@ namespace FlashCards.TestPage
         {
             testQuestion.AnswerIndex = buttonIndex;
             UpdateTestQuestionItem();
+        }
+        private string AddNewLinesToString(string str)
+        {
+            if (str.Length < 200) return str;
+            var listOfSubstrings = Enumerable.Range(0, str.Length / 200)
+                .Select(i => str.Substring(i * 200, 200));
+            return string.Join("\n", listOfSubstrings);
         }
     }
 }
