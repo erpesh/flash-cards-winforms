@@ -8,9 +8,12 @@ namespace FlashCards.Models
 {
     public class CardItem
     {
+        // data
         private string term;
         private string definition;
         private bool isStarred;
+
+        // getters setters
         public string Term
         {
             get { return term; }
@@ -26,6 +29,7 @@ namespace FlashCards.Models
             get { return isStarred; }
             set { isStarred = value; }
         }
+        // constructor
         public CardItem(string term, string definition, string isStarred = "0")
         {
             this.term = term;

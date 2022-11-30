@@ -49,10 +49,12 @@
             // lblText
             // 
             this.lblText.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblText.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblText.Font = new System.Drawing.Font("Segoe UI", 26.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblText.Location = new System.Drawing.Point(192, 78);
             this.lblText.MaximumSize = new System.Drawing.Size(533, 335);
             this.lblText.Name = "lblText";
+            this.lblText.Padding = new System.Windows.Forms.Padding(30);
             this.lblText.Size = new System.Drawing.Size(533, 335);
             this.lblText.TabIndex = 1;
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,29 +62,36 @@
             // 
             // btnLeft
             // 
+            this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLeft.FlatAppearance.BorderSize = 0;
+            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeft.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnLeft.Location = new System.Drawing.Point(79, 189);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(94, 97);
             this.btnLeft.TabIndex = 2;
-            this.btnLeft.Text = "<";
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnRight
             // 
+            this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRight.FlatAppearance.BorderSize = 0;
+            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRight.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRight.Location = new System.Drawing.Point(745, 189);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(94, 97);
             this.btnRight.TabIndex = 3;
-            this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // pctrStar
             // 
             this.pctrStar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pctrStar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pctrStar.Location = new System.Drawing.Point(682, 93);
             this.pctrStar.Name = "pctrStar";
             this.pctrStar.Size = new System.Drawing.Size(24, 24);

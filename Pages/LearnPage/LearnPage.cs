@@ -34,8 +34,10 @@ namespace FlashCards.LearnPage
         {
             InitializeComponent();
 
-            blackStar = Image.FromFile("star-icon-black.png");
-            yellowStar = Image.FromFile("star-icon-yellow.png");
+            blackStar = Image.FromFile("icons/star-icon-black.png");
+            yellowStar = Image.FromFile("icons/star-icon-yellow.png");
+            btnLeft.BackgroundImage = Image.FromFile("icons/chevron-left.png");
+            btnRight.BackgroundImage = Image.FromFile("icons/chevron-right.png");
         }
         
         // event functions
@@ -103,6 +105,7 @@ namespace FlashCards.LearnPage
             {
                 lblText.Text = activeCard.Definition;
             }
+            if (lblText.Text.Length > 100) lblText.Font = new Font("Segoe UI", 16, FontStyle.Regular);
             // set the star
             pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;
         }
