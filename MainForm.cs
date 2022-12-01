@@ -24,7 +24,7 @@ namespace FlashCards
         {
             InitializeComponent();
 
-            btnGoBack.BackgroundImage = Image.FromFile("icons/arrow-left.png");
+            btnGoBack.BackgroundImage = Properties.Resources.arrowLeft;
             cardsSet = new CardsSet(cardSetName);
             mainPage1.BringToFront();
             mainPage1.MainForm = this;
@@ -79,6 +79,7 @@ namespace FlashCards
             // sets tooltips for disabled buttons
             if (cardsSet.Cards.Count >= 4) return;
             Control ctrl = GetChildAtPoint(e.Location);
+            //if (ctrl is Button) label1.Text = ctrl.Name;
             if (ctrl == btnLearnPage && !isToolTipShown && !btnLearnPage.Enabled)
                 SetToolTipToButton(btnLearnPage, "Card set should consist of 2 or more cards to access Learn page");
             else if (ctrl == btnTestPage && !isToolTipShown && !btnTestPage.Enabled)

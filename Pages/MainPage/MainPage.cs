@@ -66,6 +66,7 @@ namespace FlashCards.MainPage
         {
             mainForm.DeleteCardSet();
         }
+
         // member functions
         private void DisplayCards()
         {

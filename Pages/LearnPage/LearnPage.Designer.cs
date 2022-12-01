@@ -64,6 +64,7 @@
             // 
             this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLeft.Enabled = false;
             this.btnLeft.FlatAppearance.BorderSize = 0;
             this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeft.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -78,6 +79,7 @@
             // 
             this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRight.Enabled = false;
             this.btnRight.FlatAppearance.BorderSize = 0;
             this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRight.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -111,6 +113,7 @@
             this.Controls.Add(this.cardBg);
             this.Name = "LearnPage";
             this.Size = new System.Drawing.Size(952, 593);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LearnPage_MouseMove);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LearnPage_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).EndInit();
             this.ResumeLayout(false);

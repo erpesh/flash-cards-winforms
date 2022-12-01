@@ -36,8 +36,8 @@
             this.btnTestPage = new System.Windows.Forms.Button();
             this.testPage1 = new FlashCards.TestPage.TestPage();
             this.btnGoBack = new System.Windows.Forms.Button();
-            this.learnPage1 = new FlashCards.LearnPage.LearnPage();
             this.ttipNavButton = new System.Windows.Forms.ToolTip(this.components);
+            this.learnPage1 = new FlashCards.LearnPage.LearnPage();
             this.SuspendLayout();
             // 
             // headerBg
@@ -134,6 +134,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Flash Cards";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.ResumeLayout(false);
 
         }
@@ -147,7 +148,7 @@
         private Button btnTestPage;
         private TestPage.TestPage testPage1;
         private Button btnGoBack;
-        private LearnPage.LearnPage learnPage1;
         private ToolTip ttipNavButton;
+        private LearnPage.LearnPage learnPage1;
     }
 }
