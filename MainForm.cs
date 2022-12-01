@@ -11,6 +11,9 @@ namespace FlashCards
         private bool isGoBackToSetsList;
         private bool isCardSetDeleted;
 
+        private bool isToolTipShown;
+        private string activeToolTip;
+
         // getters setters
         public CardsSet CardsSet { get { return cardsSet; } }
         public bool IsGoBackToSetsList { get { return isGoBackToSetsList; } }
@@ -71,6 +74,20 @@ namespace FlashCards
             isGoBackToSetsList = true;
             Close();
         }
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            // sets tooltips for disabled buttons
+            if (cardsSet.Cards.Count >= 4) return;
+            Control ctrl = GetChildAtPoint(e.Location);
+            if (ctrl == btnLearnPage && !isToolTipShown && !btnLearnPage.Enabled)
+                SetToolTipToButton(btnLearnPage, "Card set should consist of 2 or more cards to access Learn page");
+            else if (ctrl == btnTestPage && !isToolTipShown && !btnTestPage.Enabled)
+                SetToolTipToButton(btnTestPage, "Card set should consist of 4 or more cards to access Test page");
+            else if (ctrl is not Button && isToolTipShown)
+            {
+                HideToolTipOnButton();
+            }
+        }
 
         // member functions
         public void UpdateLearnPage()
@@ -91,17 +108,22 @@ namespace FlashCards
         {
             btnTestPage.Enabled = cardsSet.Cards.Count >= 4;
             btnLearnPage.Enabled = cardsSet.Cards.Count >= 2;
-
-            if (!btnTestPage.Enabled)
-            {
-                ToolTip toolTip = new ToolTip();
-                toolTip.SetToolTip(btnTestPage, "Test can be created only with 4 or more cards in a set");
-            }
-            if (btnLearnPage.Enabled)
-            {
-                ToolTip toolTip = new ToolTip();
-                toolTip.SetToolTip(btnLearnPage, "Learn page is available only with 2 or more cards in a set");
-            }
+        }
+        private void SetToolTipToButton(Button btn, string text)
+        {
+            ttipNavButton.Show(text, btn, btn.Width / 3, btn.Height / 4);
+            isToolTipShown = true;
+            activeToolTip = btn.Name;
+        }
+        private void HideToolTipOnButton()
+        {
+            if (activeToolTip == "") return;
+            if (activeToolTip == btnLearnPage.Name)
+                ttipNavButton.Hide(btnLearnPage);
+            else if (activeToolTip == btnTestPage.Name)
+                ttipNavButton.Hide(btnTestPage);
+            isToolTipShown = false;
+            activeToolTip = "";
         }
     }
 }

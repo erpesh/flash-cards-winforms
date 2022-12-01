@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.headerBg = new System.Windows.Forms.Label();
             this.btnMainPage = new System.Windows.Forms.Button();
             this.btnLearnPage = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.testPage1 = new FlashCards.TestPage.TestPage();
             this.btnGoBack = new System.Windows.Forms.Button();
             this.learnPage1 = new FlashCards.LearnPage.LearnPage();
+            this.ttipNavButton = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // headerBg
@@ -45,6 +47,7 @@
             this.headerBg.Name = "headerBg";
             this.headerBg.Size = new System.Drawing.Size(937, 53);
             this.headerBg.TabIndex = 0;
+            this.headerBg.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             // 
             // btnMainPage
             // 
@@ -145,5 +148,6 @@
         private TestPage.TestPage testPage1;
         private Button btnGoBack;
         private LearnPage.LearnPage learnPage1;
+        private ToolTip ttipNavButton;
     }
 }
