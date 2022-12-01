@@ -28,6 +28,8 @@ namespace FlashCards
             mainPage1.CardsSet = cardsSet;
             learnPage1.CardsSet = cardsSet;
             testPage1.CardsSet = cardsSet;
+
+            UpdateDisplay();
         }
 
         // code copied from https://stackoverflow.com/questions/34006951/prevent-button-from-being-focused-by-arrow-key-click
@@ -84,6 +86,22 @@ namespace FlashCards
             isGoBackToSetsList = true;
             isCardSetDeleted = true;
             Close();
+        }
+        public void UpdateDisplay()
+        {
+            btnTestPage.Enabled = cardsSet.Cards.Count >= 4;
+            btnLearnPage.Enabled = cardsSet.Cards.Count >= 2;
+
+            if (!btnTestPage.Enabled)
+            {
+                ToolTip toolTip = new ToolTip();
+                toolTip.SetToolTip(btnTestPage, "Test can be created only with 4 or more cards in a set");
+            }
+            if (btnLearnPage.Enabled)
+            {
+                ToolTip toolTip = new ToolTip();
+                toolTip.SetToolTip(btnLearnPage, "Learn page is available only with 2 or more cards in a set");
+            }
         }
     }
 }

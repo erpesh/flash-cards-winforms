@@ -33,15 +33,6 @@ namespace FlashCards.MainPage
         public MainPage()
         {
             InitializeComponent();
-
-            //var yourToolTip = new ToolTip();
-            ////The below are optional, of course,
-
-            //yourToolTip.ToolTipIcon = ToolTipIcon.Info;
-            //yourToolTip.IsBalloon = true;
-            //yourToolTip.ShowAlways = true;
-
-            //yourToolTip.SetToolTip(lblTerm, "Oooh, you put your mouse over me.");
         }
 
         // event functions
@@ -62,11 +53,13 @@ namespace FlashCards.MainPage
 
             txtTerm.Text = "";
             txtDefinition.Text = "";
+            MainForm.UpdateDisplay();
         }
         private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
         {
             mainForm.UpdateLearnPage();
             mainForm.ResetTestPage();
+            mainForm.UpdateDisplay();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

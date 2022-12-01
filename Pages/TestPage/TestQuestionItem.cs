@@ -50,8 +50,7 @@ namespace FlashCards.TestPage
             Button btn = sender as Button;
             if (btn.Text.Length > 20)
             {
-                ToolTip toolTip = new ToolTip();
-                toolTip.Show(AddNewLinesToString(btn.Text), btn, 30000);
+                toolTip1.Show(AddNewLinesToString(btn.Text), btn, 30000);
             }
         }
 
@@ -100,6 +99,7 @@ namespace FlashCards.TestPage
         }
         private void HandleAnswerButtonClick(int buttonIndex)
         {
+            if (buttonIndex == testQuestion.AnswerIndex) buttonIndex = -1;
             testQuestion.AnswerIndex = buttonIndex;
             UpdateTestQuestionItem();
         }

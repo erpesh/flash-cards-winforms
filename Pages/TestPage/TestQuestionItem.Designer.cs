@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTermTitle = new System.Windows.Forms.Label();
             this.lblTerm = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -35,6 +36,7 @@
             this.btnAnswer2 = new System.Windows.Forms.Button();
             this.btnAnswer3 = new System.Windows.Forms.Button();
             this.btnAnswer4 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // lblTermTitle
@@ -143,5 +145,6 @@
         private Button btnAnswer2;
         private Button btnAnswer3;
         private Button btnAnswer4;
+        private ToolTip toolTip1;
     }
 }

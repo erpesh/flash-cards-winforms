@@ -13,7 +13,7 @@ namespace FlashCards.Models
         private CardsSet cardsSet;
         private CardItem cardItem;
         private List<string> possibleAnswers = new();
-        private int answerIndex;
+        private int answerIndex = -1;
         private bool isAnswered = false;
         private bool isCorrect = false;
 

@@ -88,6 +88,7 @@ namespace FlashCards.StartForm
                 if (mf.IsCardSetDeleted) 
                     DeleteCardSet(mf.CardsSet);
                 UpdateListOfSets();
+                UpdateDispaly();
             }
             else Close();
         }
