@@ -54,6 +54,7 @@
             this.txtDefinition.Name = "txtDefinition";
             this.txtDefinition.Size = new System.Drawing.Size(188, 27);
             this.txtDefinition.TabIndex = 10;
+            this.txtDefinition.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // txtTerm
             // 
@@ -61,6 +62,7 @@
             this.txtTerm.Name = "txtTerm";
             this.txtTerm.Size = new System.Drawing.Size(188, 27);
             this.txtTerm.TabIndex = 9;
+            this.txtTerm.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // lblDefinition
             // 

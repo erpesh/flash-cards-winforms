@@ -38,7 +38,7 @@ namespace FlashCards.MainPage
         // event functions
         private void MainPage_Load(object sender, EventArgs e)
         {
-            DisplayCards();
+            UpdateDisplay();
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
@@ -66,11 +66,17 @@ namespace FlashCards.MainPage
         {
             mainForm.DeleteCardSet();
         }
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            btnAdd.Enabled = tb.Text.Length < 100;
+        }
 
         // member functions
-        private void DisplayCards()
+        private void UpdateDisplay()
         {
             lblCardSetName.Text = cardsSet.CardSetName;
+
             cardsPanel.Controls.Clear();
             foreach (CardItem card in cardsSet.Cards)
             {

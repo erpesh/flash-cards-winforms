@@ -13,9 +13,12 @@ namespace FlashCards.MainPage
 {
     public partial class CardListItem : UserControl
     {
+        // data
         private MainPage mainPage;
         private CardItem card;
         private Action<CardItem> removeCard;
+
+        // getters setters
         public MainPage MainPage
         {
             set { mainPage = value; }
@@ -33,15 +36,44 @@ namespace FlashCards.MainPage
         {
             set { removeCard = value; }
         }
+        // constructor
         public CardListItem()
         {
             InitializeComponent();
         }
+        // event functions
         private void Remove_Click(object sender, EventArgs e)
         {
             removeCard(card);
-            this.Dispose();
+            Dispose();
         }
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            txtTerm.Select();
+            SwitchReadOnly();
+            SwitchButtons();
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            card.Term = txtTerm.Text;
+            card.Definition = txtDefinition.Text;
+
+            mainPage.CardsSet.WriteToFile();
+            mainPage.MainForm.UpdateLearnPage();
+            SwitchReadOnly();
+            SwitchButtons();
+        }
+        private void Term_Change(object sender, EventArgs e)
+        {
+            UpdateSaveButton(txtTerm);
+        }
+
+        private void Definition_Change(object sender, EventArgs e)
+        {
+            UpdateSaveButton(txtDefinition);
+        }
+
+        // member functions
         private void SwitchButtons()
         {
             btnEdit.Visible = !btnEdit.Visible;
@@ -52,27 +84,9 @@ namespace FlashCards.MainPage
             txtTerm.ReadOnly = !txtTerm.ReadOnly;
             txtDefinition.ReadOnly = !txtDefinition.ReadOnly;
         }
-        private void Edit_Click(object sender, EventArgs e)
+        private void UpdateSaveButton(TextBox tb)
         {
-            txtTerm.Select();
-            SwitchReadOnly();
-            SwitchButtons();
-        }
-        private void Save_Click(object sender, EventArgs e)
-        {
-            mainPage.CardsSet.WriteToFile();
-            mainPage.MainForm.UpdateLearnPage();
-            SwitchReadOnly();
-            SwitchButtons();
-        }
-        private void Term_Change(object sender, EventArgs e)
-        {
-            card.Term = txtTerm.Text;
-        }
-
-        private void Definition_Change(object sender, EventArgs e)
-        {
-            card.Definition = txtDefinition.Text;
+            btnSave.Enabled = tb.Text.Length < 100;
         }
     }
 }

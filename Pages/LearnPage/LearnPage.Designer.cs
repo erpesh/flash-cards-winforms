@@ -33,6 +33,7 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.pctrStar = new System.Windows.Forms.PictureBox();
+            this.lblCardSide = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,10 +103,21 @@
             this.pctrStar.TabStop = false;
             this.pctrStar.Click += new System.EventHandler(this.pctrStar_Click);
             // 
+            // lblCardSide
+            // 
+            this.lblCardSide.AutoSize = true;
+            this.lblCardSide.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblCardSide.Location = new System.Drawing.Point(213, 93);
+            this.lblCardSide.Name = "lblCardSide";
+            this.lblCardSide.Size = new System.Drawing.Size(50, 20);
+            this.lblCardSide.TabIndex = 5;
+            this.lblCardSide.Text = "label1";
+            // 
             // LearnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCardSide);
             this.Controls.Add(this.pctrStar);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnLeft);
@@ -117,6 +129,7 @@
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LearnPage_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -127,5 +140,6 @@
         private Button btnLeft;
         private Button btnRight;
         private PictureBox pctrStar;
+        private Label lblCardSide;
     }
 }
