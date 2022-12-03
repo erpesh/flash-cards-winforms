@@ -61,6 +61,12 @@ namespace FlashCards.TestPage
             timeInSeconds--;
             lblTime.Text = timeString;
         }
+        private void lstQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activeQuestionIndex = int.Parse(lstQuestions.GetItemText(lstQuestions.SelectedItem).Trim()) - 1;
+            testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
+            NavigationButtonsUpdate();
+        }
 
         // member functions
         private void Reset()
@@ -78,8 +84,8 @@ namespace FlashCards.TestPage
             lstQuestions.Items.Clear();
             for(int i = 1; i < cardsTest.TestQuestions.Count + 1; i++)
             {
-                string formatedNumber = String.Format("   {0}     ", i > 9 ? i : i + " ");
-                lstQuestions.Items.Add(formatedNumber);
+                //string formatedNumber = String.Format("   {0}     ", i > 9 ? i : i + " ");
+                lstQuestions.Items.Add(i);
             }
 
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
@@ -88,19 +94,8 @@ namespace FlashCards.TestPage
         }
         private void SelectListItem()
         {
-            foreach (ListViewItem item in lstQuestions.Items)
-            {
-                item.Selected = false;
-            }
-            if (lstQuestions.Items.Count > 0 && activeQuestionIndex >= 0) 
-                lstQuestions.Items[activeQuestionIndex].Selected = true;
-        }
-        private void QuestionsList_IndexChange(object sender, EventArgs e)
-        {
-            if (lstQuestions.SelectedItems.Count == 0) return;
-            activeQuestionIndex = int.Parse(lstQuestions.SelectedItems[0].Text.Trim()) - 1;
-            testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
-            NavigationButtonsUpdate();
+            if (lstQuestions.Items.Count > 0 && activeQuestionIndex >= 0)
+                lstQuestions.SelectedIndex = activeQuestionIndex;
         }
         public void UpdateQuestion(bool isNext)
         {
@@ -151,5 +146,6 @@ namespace FlashCards.TestPage
             string timeString = string.Format("{0:D2}:{1:D2}", minutes, seconds);
             return timeString;
         }
+
     }
 }

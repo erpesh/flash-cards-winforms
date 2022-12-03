@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.lblQuestionsList = new System.Windows.Forms.Label();
             this.testQuestionItem = new FlashCards.TestPage.TestQuestionItem();
-            this.lstQuestions = new System.Windows.Forms.ListView();
             this.btnSubmitTest = new System.Windows.Forms.Button();
             this.btnPrevQuestion = new System.Windows.Forms.Button();
             this.btnNextQuestion = new System.Windows.Forms.Button();
             this.lblTimerTitle = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.lstQuestions = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblQuestionsList
@@ -58,18 +58,6 @@
             this.testQuestionItem.Size = new System.Drawing.Size(616, 354);
             this.testQuestionItem.TabIndex = 2;
             this.testQuestionItem.TestQuestion = null;
-            // 
-            // lstQuestions
-            // 
-            this.lstQuestions.BackColor = System.Drawing.SystemColors.Control;
-            this.lstQuestions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lstQuestions.Location = new System.Drawing.Point(20, 60);
-            this.lstQuestions.Name = "lstQuestions";
-            this.lstQuestions.Size = new System.Drawing.Size(45, 424);
-            this.lstQuestions.TabIndex = 3;
-            this.lstQuestions.UseCompatibleStateImageBehavior = false;
-            this.lstQuestions.View = System.Windows.Forms.View.List;
-            this.lstQuestions.SelectedIndexChanged += new System.EventHandler(this.QuestionsList_IndexChange);
             // 
             // btnSubmitTest
             // 
@@ -131,16 +119,28 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // lstQuestions
+            // 
+            this.lstQuestions.BackColor = System.Drawing.SystemColors.Control;
+            this.lstQuestions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lstQuestions.FormattingEnabled = true;
+            this.lstQuestions.ItemHeight = 20;
+            this.lstQuestions.Location = new System.Drawing.Point(23, 51);
+            this.lstQuestions.Name = "lstQuestions";
+            this.lstQuestions.Size = new System.Drawing.Size(35, 320);
+            this.lstQuestions.TabIndex = 9;
+            this.lstQuestions.SelectedIndexChanged += new System.EventHandler(this.lstQuestions_SelectedIndexChanged);
+            // 
             // TestPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lstQuestions);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblTimerTitle);
             this.Controls.Add(this.btnNextQuestion);
             this.Controls.Add(this.btnPrevQuestion);
             this.Controls.Add(this.btnSubmitTest);
-            this.Controls.Add(this.lstQuestions);
             this.Controls.Add(this.testQuestionItem);
             this.Controls.Add(this.lblQuestionsList);
             this.Name = "TestPage";
@@ -153,12 +153,12 @@
         #endregion
         private Label lblQuestionsList;
         private TestQuestionItem testQuestionItem;
-        private ListView lstQuestions;
         private Button btnSubmitTest;
         private Button btnPrevQuestion;
         private Button btnNextQuestion;
         private Label lblTimerTitle;
         private Label lblTime;
         private System.Windows.Forms.Timer timer;
+        private ListBox lstQuestions;
     }
 }

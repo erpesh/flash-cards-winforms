@@ -36,7 +36,7 @@ namespace FlashCards.Pages.TestPage
             ManageControls();
 
             numOfQuestions = (int)nudNumberOfQuestions.Minimum;
-            timeInMinutes = (int)nudTimeInMinutes.Minimum;
+            timeInMinutes = 0;
         }
         
         // event functions
