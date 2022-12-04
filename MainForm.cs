@@ -7,6 +7,8 @@ namespace FlashCards
     public partial class MainForm : Form
     {
         // data
+        private const int minValueForTestPage = 4;
+        private const int minValueForLearnPage = 2;
         private CardsSet cardsSet;
         private bool isGoBackToSetsList;
         private bool isCardSetDeleted;
@@ -77,13 +79,13 @@ namespace FlashCards
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
             // sets tooltips for disabled buttons
-            if (cardsSet.Cards.Count >= 4) return;
+            if (cardsSet.Cards.Count >= minValueForTestPage) return;
+
             Control ctrl = GetChildAtPoint(e.Location);
-            //if (ctrl is Button) label1.Text = ctrl.Name;
             if (ctrl == btnLearnPage && !isToolTipShown && !btnLearnPage.Enabled)
-                SetToolTipToButton(btnLearnPage, "Card set should consist of 2 or more cards to access Learn page");
+                SetToolTipToButton(btnLearnPage, "Card set should consist of " + minValueForLearnPage + " or more cards to access Learn page");
             else if (ctrl == btnTestPage && !isToolTipShown && !btnTestPage.Enabled)
-                SetToolTipToButton(btnTestPage, "Card set should consist of 4 or more cards to access Test page");
+                SetToolTipToButton(btnTestPage, "Card set should consist of " + minValueForTestPage + " or more cards to access Test page");
             else if (ctrl is not Button && isToolTipShown)
             {
                 HideToolTipOnButton();
@@ -107,10 +109,10 @@ namespace FlashCards
         }
         public void UpdateDisplay()
         {
-            btnTestPage.Enabled = cardsSet.Cards.Count >= 4;
-            btnLearnPage.Enabled = cardsSet.Cards.Count >= 2;
+            btnTestPage.Enabled = cardsSet.Cards.Count >= minValueForTestPage;
+            btnLearnPage.Enabled = cardsSet.Cards.Count >= minValueForLearnPage;
         }
-        private void SetToolTipToButton(Button btn, string text)
+        public void SetToolTipToButton(Button btn, string text)
         {
             ttipNavButton.Show(text, btn, btn.Width / 3, btn.Height / 4);
             isToolTipShown = true;

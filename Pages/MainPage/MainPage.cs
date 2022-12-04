@@ -8,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlashCards.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FlashCards.MainPage
 {
     public partial class MainPage : UserControl
     {
         // data
+        private const int maxTextLength = 100;
+        private const int minTextLength = 3;
         private MainForm mainForm;
         private CardsSet cardsSet;
+        private bool isToolTipShown;
 
         // getters setters
         public MainForm MainForm
@@ -42,6 +46,9 @@ namespace FlashCards.MainPage
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            // TODO
+            if (CheckIfUserInputSeparator()) return;
+
             var card = new CardItem(txtTerm.Text, txtDefinition.Text);
             cardsSet.AddCard(card);
 
@@ -58,7 +65,6 @@ namespace FlashCards.MainPage
         private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
         {
             mainForm.UpdateLearnPage();
-            mainForm.ResetTestPage();
             mainForm.UpdateDisplay();
         }
 
@@ -68,8 +74,22 @@ namespace FlashCards.MainPage
         }
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            TextBox tb = sender as TextBox;
-            btnAdd.Enabled = tb.Text.Length < 100;
+            UpdateAddButton();
+        }
+        private void MainPage_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control ctrl = GetChildAtPoint(e.Location);
+            if (ctrl == btnAdd && !isToolTipShown && !btnAdd.Enabled)
+            {
+                isToolTipShown = true;
+                string text = string.Format("Term and definition should be {0}-{1} characters long", minTextLength, maxTextLength);
+                ttipAddButton.Show(text, btnAdd, btnAdd.Width / 3, btnAdd.Height / 4);
+            }
+            else if (ctrl != btnAdd && isToolTipShown)
+            {
+                ttipAddButton.Hide(btnAdd);
+                isToolTipShown = false;
+            }
         }
 
         // member functions
@@ -87,5 +107,19 @@ namespace FlashCards.MainPage
                 cardsPanel.Controls.Add(cardListItem);
             }
         }
+        private void UpdateAddButton()
+        {
+            bool termCondition = txtTerm.Text.Length <= maxTextLength 
+                && txtTerm.Text.Length >= minTextLength;
+            bool definitionCondition = txtDefinition.Text.Length < maxTextLength 
+                && txtDefinition.Text.Length >= minTextLength;
+            btnAdd.Enabled = termCondition && definitionCondition;
+        }
+        private bool CheckIfUserInputSeparator()
+        {
+            return txtTerm.Text.Contains(cardsSet.Separator) ||
+                txtDefinition.Text.Contains(cardsSet.Separator);
+        }
+
     }
 }

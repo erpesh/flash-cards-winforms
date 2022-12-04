@@ -40,6 +40,10 @@ namespace FlashCards.MainPage
         public CardListItem()
         {
             InitializeComponent();
+
+            btnEdit.BackgroundImage = Properties.Resources.editIcon;
+            btnRemove.BackgroundImage = Properties.Resources.removeIcon;
+            btnSave.BackgroundImage = Properties.Resources.tickIcon;
         }
         // event functions
         private void Remove_Click(object sender, EventArgs e)

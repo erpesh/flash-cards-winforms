@@ -37,21 +37,25 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(260, 3);
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemove.FlatAppearance.BorderSize = 0;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Location = new System.Drawing.Point(323, 3);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(94, 29);
+            this.btnRemove.Size = new System.Drawing.Size(30, 30);
             this.btnRemove.TabIndex = 0;
-            this.btnRemove.Text = "REMOVE";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.Remove_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(160, 3);
+            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Location = new System.Drawing.Point(285, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(94, 29);
+            this.btnEdit.Size = new System.Drawing.Size(30, 30);
             this.btnEdit.TabIndex = 3;
-            this.btnEdit.Text = "EDIT";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.Edit_Click);
             // 
@@ -81,12 +85,14 @@
             // 
             // btnSave
             // 
+            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSave.Location = new System.Drawing.Point(160, 3);
+            this.btnSave.Location = new System.Drawing.Point(285, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 29);
+            this.btnSave.Size = new System.Drawing.Size(30, 30);
             this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.Save_Click);

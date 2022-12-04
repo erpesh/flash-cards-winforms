@@ -93,6 +93,26 @@ namespace FlashCards.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap editIcon {
+            get {
+                object obj = ResourceManager.GetObject("editIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap removeIcon {
+            get {
+                object obj = ResourceManager.GetObject("removeIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap starIconBlack {
             get {
                 object obj = ResourceManager.GetObject("starIconBlack", resourceCulture);
@@ -106,6 +126,16 @@ namespace FlashCards.Properties {
         internal static System.Drawing.Bitmap starIconYellow {
             get {
                 object obj = ResourceManager.GetObject("starIconYellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tickIcon {
+            get {
+                object obj = ResourceManager.GetObject("tickIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

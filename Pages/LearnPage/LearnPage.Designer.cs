@@ -109,9 +109,9 @@
             this.lblCardSide.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblCardSide.Location = new System.Drawing.Point(213, 93);
             this.lblCardSide.Name = "lblCardSide";
-            this.lblCardSide.Size = new System.Drawing.Size(50, 20);
+            this.lblCardSide.Size = new System.Drawing.Size(71, 20);
             this.lblCardSide.TabIndex = 5;
-            this.lblCardSide.Text = "label1";
+            this.lblCardSide.Text = "Card side";
             // 
             // LearnPage
             // 

@@ -11,6 +11,7 @@ namespace FlashCards.Models
         private List<CardItem> cards = new List<CardItem>();
 
         // getters setters
+        public char Separator { get { return separator; } }
         public string CardSetName { get { return cardSetName; } }
         public string FilePath { get { return filePath; } }
         public List<CardItem> Cards { get { return cards; } }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtDefinition = new System.Windows.Forms.TextBox();
             this.txtTerm = new System.Windows.Forms.TextBox();
@@ -36,10 +37,12 @@
             this.cardsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.lblCardSetName = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.ttipAddButton = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnAdd
             // 
+            this.btnAdd.Enabled = false;
             this.btnAdd.Location = new System.Drawing.Point(69, 222);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(334, 44);
@@ -90,7 +93,7 @@
             this.cardsPanel.AutoScroll = true;
             this.cardsPanel.Location = new System.Drawing.Point(519, 22);
             this.cardsPanel.Name = "cardsPanel";
-            this.cardsPanel.Size = new System.Drawing.Size(390, 452);
+            this.cardsPanel.Size = new System.Drawing.Size(383, 452);
             this.cardsPanel.TabIndex = 6;
             this.cardsPanel.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.MainPage_ControlRemoved);
             // 
@@ -129,6 +132,7 @@
             this.Name = "MainPage";
             this.Size = new System.Drawing.Size(952, 487);
             this.Load += new System.EventHandler(this.MainPage_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainPage_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +148,6 @@
         private FlowLayoutPanel cardsPanel;
         private Label lblCardSetName;
         private Button btnDelete;
+        private ToolTip ttipAddButton;
     }
 }
