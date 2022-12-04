@@ -74,12 +74,10 @@ namespace FlashCards.LearnPage
             if (ctrl is Button)
             {
                 ctrl.Enabled = true;
+                return;
             }
-            else
-            {
-                btnLeft.Enabled = false;
-                btnRight.Enabled = false;
-            }
+            btnLeft.Enabled = false;
+            btnRight.Enabled = false;
         }
 
         // member functions

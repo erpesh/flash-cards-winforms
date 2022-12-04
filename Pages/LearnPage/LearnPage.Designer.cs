@@ -50,6 +50,7 @@
             // lblText
             // 
             this.lblText.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblText.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblText.Font = new System.Drawing.Font("Segoe UI", 26.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblText.Location = new System.Drawing.Point(192, 78);

@@ -55,10 +55,7 @@ namespace FlashCards.MainPage
             var card = new CardItem(txtTerm.Text, txtDefinition.Text);
             cardsSet.AddCard(card);
 
-            CardListItem cardListItem = new CardListItem();
-            cardListItem.MainPage = this;
-            cardListItem.Card = card;
-            cardListItem.RemoveCard = cardsSet.RemoveCard;
+            CardListItem cardListItem = new CardListItem(this, cardsSet, card);
             cardsPanel.Controls.Add(cardListItem);
 
             txtTerm.Text = "";
@@ -103,10 +100,7 @@ namespace FlashCards.MainPage
             cardsPanel.Controls.Clear();
             foreach (CardItem card in cardsSet.Cards)
             {
-                CardListItem cardListItem = new CardListItem();
-                cardListItem.MainPage = this;
-                cardListItem.Card = card;
-                cardListItem.RemoveCard = cardsSet.RemoveCard;
+                CardListItem cardListItem = new CardListItem(this, cardsSet, card);
                 cardsPanel.Controls.Add(cardListItem);
             }
         }
@@ -123,6 +117,5 @@ namespace FlashCards.MainPage
             return txtTerm.Text.Contains(cardsSet.Separator) ||
                 txtDefinition.Text.Contains(cardsSet.Separator);
         }
-
     }
 }

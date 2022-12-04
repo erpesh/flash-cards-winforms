@@ -15,40 +15,29 @@ namespace FlashCards.MainPage
     {
         // data
         private MainPage mainPage;
+        private CardsSet cardsSet;
         private CardItem card;
-        private Action<CardItem> removeCard;
 
-        // getters setters
-        public MainPage MainPage
-        {
-            set { mainPage = value; }
-        }
-        public CardItem Card
-        {
-            set 
-            { 
-                card = value;
-                txtTerm.Text = value.Term;
-                txtDefinition.Text = value.Definition;
-            }
-        }
-        public Action<CardItem> RemoveCard
-        {
-            set { removeCard = value; }
-        }
         // constructor
-        public CardListItem()
+        public CardListItem(MainPage mainPage, CardsSet cardsSet, CardItem card)
         {
+            this.mainPage = mainPage;
+            this.cardsSet = cardsSet;
+            this.card = card;
+
             InitializeComponent();
 
             btnEdit.BackgroundImage = Properties.Resources.editIcon;
             btnRemove.BackgroundImage = Properties.Resources.removeIcon;
             btnSave.BackgroundImage = Properties.Resources.tickIcon;
+
+            txtTerm.Text = card.Term;
+            txtDefinition.Text = card.Definition;
         }
         // event functions
         private void Remove_Click(object sender, EventArgs e)
         {
-            removeCard(card);
+            mainPage.CardsSet.RemoveCard(card);
             Dispose();
         }
         private void Edit_Click(object sender, EventArgs e)
@@ -59,6 +48,11 @@ namespace FlashCards.MainPage
         }
         private void Save_Click(object sender, EventArgs e)
         {
+            if (txtTerm.Text.Contains(cardsSet.Separator) || txtDefinition.Text.Contains(cardsSet.Separator))
+            {
+                MessageBox.Show("Don't use " + cardsSet.Separator + "symbol");
+                return;
+            }
             card.Term = txtTerm.Text;
             card.Definition = txtDefinition.Text;
 
