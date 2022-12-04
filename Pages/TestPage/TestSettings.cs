@@ -73,7 +73,7 @@ namespace FlashCards.Pages.TestPage
         // member functions
         private void ManageControls()
         {
-            int numOfStarredCards = cardsSet.GetNumberOfStarredCards();
+            int numOfStarredCards = cardsSet.GetStarredCards().Count;
             if (numOfStarredCards < nudNumberOfQuestions.Minimum)
             {
                 cbUseStarred.Enabled = false;

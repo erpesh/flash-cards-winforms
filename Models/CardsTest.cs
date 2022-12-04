@@ -34,17 +34,21 @@ namespace FlashCards.Models
         // functions
         private void GenerateQuestions(int numOfQuestions, bool useOnlyStarredCards)
         {
+            Random rnd = new Random();
+            List<CardItem> cardsForTest = useOnlyStarredCards ?
+                cardsSet.GetStarredCards() : new List<CardItem>(cardsSet.Cards);
+                
             for (int i = 0; i < numOfQuestions; i++)
             {
-                CardItem cardItem = cardsSet.Cards[i];
-                // if useOnlyStarredCards == true the progam is skipping unstarred cards
-                if (useOnlyStarredCards && !cardItem.IsStarred) continue;
+                int randomIndex = rnd.Next(cardsForTest.Count);
+                CardItem cardItem = cardsForTest[randomIndex];
+                cardsForTest.RemoveAt(randomIndex);
+
 
                 TestQuestion question = new(cardsSet, cardItem);
                 testQuestions.Add(question);
             }
-            Random rand = new Random();
-            testQuestions = testQuestions.OrderBy(_ => rand.Next()).ToList();
+            testQuestions = testQuestions.OrderBy(_ => rnd.Next()).ToList();
         }
         public void SubmitTest()
         {

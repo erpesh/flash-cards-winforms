@@ -71,6 +71,7 @@
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 20);
             this.lblError.TabIndex = 3;
+            this.lblError.UseMnemonic = false;
             // 
             // CardSetNameForm
             // 

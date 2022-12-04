@@ -75,16 +75,18 @@ namespace FlashCards.TestPage
             activeQuestionIndex = 0;
             isTestSubmited = false;
             testQuestionItem.IsTestSubmited = false;
+
+            timer.Stop();
         }
         public void GenerateTest(int numOfQuestions, bool toStarCorrectAnswers, bool useOnlyStarredCards)
         {
             Reset();
             cardsTest = new CardsTest(cardsSet, numOfQuestions, toStarCorrectAnswers, useOnlyStarredCards);
 
+            // updating listbox
             lstQuestions.Items.Clear();
             for(int i = 1; i < cardsTest.TestQuestions.Count + 1; i++)
             {
-                //string formatedNumber = String.Format("   {0}     ", i > 9 ? i : i + " ");
                 lstQuestions.Items.Add(i);
             }
 
@@ -132,12 +134,9 @@ namespace FlashCards.TestPage
         }
         private void StartTimer()
         {
+            lblTimerTitle.Visible = timeInSeconds != 0;
+            lblTime.Visible = timeInSeconds != 0;
             if (timeInSeconds != 0) timer.Start();
-            else
-            {
-                lblTimerTitle.Visible = false;
-                lblTime.Visible = false;
-            }
         }
         private string TimeToString()
         {

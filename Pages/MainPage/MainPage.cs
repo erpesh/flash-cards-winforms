@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlashCards.Models;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace FlashCards.MainPage
 {
@@ -46,8 +45,12 @@ namespace FlashCards.MainPage
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            // TODO
-            if (CheckIfUserInputSeparator()) return;
+            if (CheckIfUserInputSeparator())
+            {
+                lblError.Text = "Don't use '" + cardsSet.Separator + "' symbol";
+                return;
+            }
+            else lblError.Text = "";
 
             var card = new CardItem(txtTerm.Text, txtDefinition.Text);
             cardsSet.AddCard(card);

@@ -16,6 +16,7 @@ namespace FlashCards.LearnPage
     public partial class LearnPage : UserControl
     {
         // data
+        private const int newFontTextLength = 80;
         private CardsSet cardsSet;
         private int activeCardIndex;
         private bool isActiveSideIsTerm = true;
@@ -109,8 +110,8 @@ namespace FlashCards.LearnPage
             {
                 lblText.Text = activeCard.Definition;
             }
-            // sets smaller font size if text is too long
-            if (lblText.Text.Length > 80) lblText.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            // sets smaller font size ifr the text is too long
+            if (lblText.Text.Length > newFontTextLength) lblText.Font = new Font("Segoe UI", 16, FontStyle.Regular);
             // sets the star
             pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;
             // sets card side title

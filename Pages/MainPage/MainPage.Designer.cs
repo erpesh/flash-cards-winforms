@@ -38,6 +38,7 @@
             this.lblCardSetName = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.ttipAddButton = new System.Windows.Forms.ToolTip(this.components);
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -117,10 +118,22 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(69, 369);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 28);
+            this.lblError.TabIndex = 14;
+            this.lblError.UseMnemonic = false;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblCardSetName);
             this.Controls.Add(this.btnAdd);
@@ -149,5 +162,6 @@
         private Label lblCardSetName;
         private Button btnDelete;
         private ToolTip ttipAddButton;
+        private Label lblError;
     }
 }
