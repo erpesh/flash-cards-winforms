@@ -38,8 +38,9 @@ namespace FlashCards.LearnPage
 
             blackStar = Properties.Resources.starIconBlack;
             yellowStar = Properties.Resources.starIconYellow;
-            btnLeft.BackgroundImage = Properties.Resources.chevronLeft;
-            btnRight.BackgroundImage = Properties.Resources.chevronRight;
+            pbLeft.Image = Properties.Resources.chevronLeft;
+            pbRight.Image = Properties.Resources.chevronRight;
+            pbInfo.Image = Properties.Resources.infoIcon;
         }
 
         // event functions
@@ -50,16 +51,6 @@ namespace FlashCards.LearnPage
             else if (e.KeyValue == 39) RightPress();
             else if (e.KeyValue == 13) ToggleCardStar();
         }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-            LeftPress();
-        }
-
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-            RightPress();
-        }
         private void Card_Click(object sender, EventArgs e)
         {
             SwitchCardSide();
@@ -68,16 +59,18 @@ namespace FlashCards.LearnPage
         {
             ToggleCardStar();
         }
-        private void LearnPage_MouseMove(object sender, MouseEventArgs e)
+        private void Left_Click(object sender, EventArgs e)
         {
-            Control ctrl = GetChildAtPoint(e.Location);
-            if (ctrl is Button)
-            {
-                ctrl.Enabled = true;
-                return;
-            }
-            btnLeft.Enabled = false;
-            btnRight.Enabled = false;
+            LeftPress();
+        }
+
+        private void Right_Click(object sender, EventArgs e)
+        {
+            RightPress();
+        }
+        private void pbInfo_Click(object sender, EventArgs e)
+        {
+            OpenGuideMessageBox();
         }
 
         // member functions
@@ -139,6 +132,14 @@ namespace FlashCards.LearnPage
             cardsSet.Cards[activeCardIndex].IsStarred = !cardsSet.Cards[activeCardIndex].IsStarred;
             cardsSet.WriteToFile();
             UpdateCardDisplay();
+        }
+        private void OpenGuideMessageBox()
+        {
+            string guideText = "Left Arrow - previous card\n" +
+                "Right Arrow - next card\n" +
+                "Space - flip the card\n" +
+                "Enter - star/unstar the card";
+            MessageBox.Show(guideText);
         }
     }
 }

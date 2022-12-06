@@ -52,10 +52,14 @@ namespace FlashCards.Pages.TestPage
         private void cbStarCorrect_CheckedChanged(object sender, EventArgs e)
         {
             toStarCorrectAnswers = cbStarCorrect.Checked;
+            cbUseStarred.Checked = false;
+            cbUseStarred.Enabled = !cbUseStarred.Enabled;
         }
         private void cbUseStarred_CheckedChanged(object sender, EventArgs e)
         {
             useOnlyStarredCards = cbUseStarred.Checked;
+            cbStarCorrect.Checked = false;
+            cbStarCorrect.Enabled = !cbStarCorrect.Enabled;
             ManageControls();
         }
         private void cbUseTimer_CheckedChanged(object sender, EventArgs e)
@@ -88,6 +92,9 @@ namespace FlashCards.Pages.TestPage
                 nudNumberOfQuestions.Maximum = cardsSet.Cards.Count;
             }
         }
+        private void SwitchCheckBoxes()
+        {
 
+        }
     }
 }

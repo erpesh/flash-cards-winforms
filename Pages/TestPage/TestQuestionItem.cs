@@ -54,9 +54,6 @@ namespace FlashCards.TestPage
             }
         }
 
-        // remove answer on click
-
-
         // member functions
         private void UpdateAnswerButton(Button btn, int index)
         {
@@ -66,6 +63,7 @@ namespace FlashCards.TestPage
         private void UpdateTestQuestionItem()
         {
             lblTerm.Text = testQuestion.CardItem.Term;
+
             UpdateAnswerButton(btnAnswer1, 0);
             UpdateAnswerButton(btnAnswer2, 1);
             UpdateAnswerButton(btnAnswer3, 2);
@@ -96,6 +94,8 @@ namespace FlashCards.TestPage
                     else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightBlue;
                 }
             }
+            // update skipped text
+            lblSkipped.Text = isTestSubmited && !testQuestion.IsAnswered ? "Skipped" : "";
         }
         private void HandleAnswerButtonClick(int buttonIndex)
         {

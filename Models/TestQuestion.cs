@@ -36,18 +36,9 @@ namespace FlashCards.Models
             get { return answerIndex; }
             set
             {
-                if (value == -1)
-                {
-                    isAnswered = false;
-                    isCorrect = false;
-                }
-                else 
-                { 
-                    answerIndex = value;
-                    isAnswered = true;
-                    isCorrect = possibleAnswers[answerIndex] == cardItem.Definition;
-                }
-                
+                answerIndex = value;
+                isAnswered = value != -1;
+                isCorrect = isAnswered && possibleAnswers[answerIndex] == cardItem.Definition;
             }
         }
         public bool IsAnswered { get { return isAnswered; } }

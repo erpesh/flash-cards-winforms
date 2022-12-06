@@ -37,6 +37,7 @@
             this.btnAnswer3 = new System.Windows.Forms.Button();
             this.btnAnswer4 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblSkipped = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTermTitle
@@ -117,11 +118,21 @@
             this.btnAnswer4.Click += new System.EventHandler(this.btnAnswer_Click);
             this.btnAnswer4.MouseHover += new System.EventHandler(this.btnAnswer_Hover);
             // 
+            // lblSkipped
+            // 
+            this.lblSkipped.AutoSize = true;
+            this.lblSkipped.Location = new System.Drawing.Point(520, 17);
+            this.lblSkipped.Name = "lblSkipped";
+            this.lblSkipped.Size = new System.Drawing.Size(73, 20);
+            this.lblSkipped.TabIndex = 7;
+            this.lblSkipped.Text = "[Skipped]";
+            // 
             // TestQuestionItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.lblSkipped);
             this.Controls.Add(this.btnAnswer4);
             this.Controls.Add(this.btnAnswer3);
             this.Controls.Add(this.btnAnswer2);
@@ -146,5 +157,6 @@
         private Button btnAnswer3;
         private Button btnAnswer4;
         private ToolTip toolTip1;
+        private Label lblSkipped;
     }
 }

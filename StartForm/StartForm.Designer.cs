@@ -96,6 +96,8 @@
             this.Controls.Add(this.btnCreateSet);
             this.Controls.Add(this.lblListTitle);
             this.Controls.Add(this.lbCardSets);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "StartForm";
             this.Text = "Start Form";
             this.ResumeLayout(false);

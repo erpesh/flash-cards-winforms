@@ -30,11 +30,15 @@
         {
             this.cardBg = new System.Windows.Forms.Label();
             this.lblText = new System.Windows.Forms.Label();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
             this.pctrStar = new System.Windows.Forms.PictureBox();
             this.lblCardSide = new System.Windows.Forms.Label();
+            this.pbLeft = new System.Windows.Forms.PictureBox();
+            this.pbRight = new System.Windows.Forms.PictureBox();
+            this.pbInfo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // cardBg
@@ -62,36 +66,6 @@
             this.lblText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblText.Click += new System.EventHandler(this.Card_Click);
             // 
-            // btnLeft
-            // 
-            this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLeft.Enabled = false;
-            this.btnLeft.FlatAppearance.BorderSize = 0;
-            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeft.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnLeft.Location = new System.Drawing.Point(79, 189);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(94, 97);
-            this.btnLeft.TabIndex = 2;
-            this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
-            // 
-            // btnRight
-            // 
-            this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRight.Enabled = false;
-            this.btnRight.FlatAppearance.BorderSize = 0;
-            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRight.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnRight.Location = new System.Drawing.Point(745, 189);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(94, 97);
-            this.btnRight.TabIndex = 3;
-            this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
-            // 
             // pctrStar
             // 
             this.pctrStar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -114,21 +88,57 @@
             this.lblCardSide.TabIndex = 5;
             this.lblCardSide.Text = "Card side";
             // 
+            // pbLeft
+            // 
+            this.pbLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbLeft.Location = new System.Drawing.Point(83, 189);
+            this.pbLeft.Name = "pbLeft";
+            this.pbLeft.Size = new System.Drawing.Size(94, 97);
+            this.pbLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLeft.TabIndex = 6;
+            this.pbLeft.TabStop = false;
+            this.pbLeft.Click += new System.EventHandler(this.Left_Click);
+            // 
+            // pbRight
+            // 
+            this.pbRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRight.Location = new System.Drawing.Point(743, 189);
+            this.pbRight.Name = "pbRight";
+            this.pbRight.Size = new System.Drawing.Size(94, 97);
+            this.pbRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbRight.TabIndex = 7;
+            this.pbRight.TabStop = false;
+            this.pbRight.Click += new System.EventHandler(this.Right_Click);
+            // 
+            // pbInfo
+            // 
+            this.pbInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbInfo.Location = new System.Drawing.Point(19, 17);
+            this.pbInfo.Name = "pbInfo";
+            this.pbInfo.Size = new System.Drawing.Size(27, 27);
+            this.pbInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbInfo.TabIndex = 8;
+            this.pbInfo.TabStop = false;
+            this.pbInfo.Click += new System.EventHandler(this.pbInfo_Click);
+            // 
             // LearnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pbInfo);
+            this.Controls.Add(this.pbRight);
+            this.Controls.Add(this.pbLeft);
             this.Controls.Add(this.lblCardSide);
             this.Controls.Add(this.pctrStar);
-            this.Controls.Add(this.btnRight);
-            this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.lblText);
             this.Controls.Add(this.cardBg);
             this.Name = "LearnPage";
             this.Size = new System.Drawing.Size(952, 593);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LearnPage_MouseMove);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.LearnPage_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pctrStar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,9 +148,10 @@
 
         private Label cardBg;
         private Label lblText;
-        private Button btnLeft;
-        private Button btnRight;
         private PictureBox pctrStar;
         private Label lblCardSide;
+        private PictureBox pbLeft;
+        private PictureBox pbRight;
+        private PictureBox pbInfo;
     }
 }

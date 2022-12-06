@@ -45,7 +45,7 @@ namespace FlashCards.MainPage
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            if (CheckIfUserInputSeparator())
+            if (CheckIfUserEnteredSeparator())
             {
                 lblError.Text = "Don't use '" + cardsSet.Separator + "' symbol";
                 return;
@@ -112,7 +112,7 @@ namespace FlashCards.MainPage
                 && txtDefinition.Text.Length >= minTextLength;
             btnAdd.Enabled = termCondition && definitionCondition;
         }
-        private bool CheckIfUserInputSeparator()
+        private bool CheckIfUserEnteredSeparator()
         {
             return txtTerm.Text.Contains(cardsSet.Separator) ||
                 txtDefinition.Text.Contains(cardsSet.Separator);
