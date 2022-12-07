@@ -17,22 +17,24 @@ namespace FlashCards.Pages.TestPage
         private CardsSet cardsSet;
         private int numOfQuestions;
         private bool toStarCorrectAnswers;
-        private bool useOnlyStarredCards;
+        private bool useOnlyUnstarredCards;
         private int timeInMinutes;
         private bool isFormSubmitted;
 
         // getters setters
         public int NumOfQuestions { get { return numOfQuestions; } }
         public bool ToStarCorrectAnswers { get { return toStarCorrectAnswers; } }
-        public bool UseOnlyStarredCards { get { return useOnlyStarredCards; } }
+        public bool UseOnlyUnstarredCards { get { return useOnlyUnstarredCards; } }
         public int TimeInMinutes { get { return timeInMinutes; } }
         public bool IsFormSubmitted { get { return isFormSubmitted; } }
         
         // constructor
         public TestSettings(CardsSet cardsSet)
         {
-            InitializeComponent();
             this.cardsSet = cardsSet;
+
+            InitializeComponent();
+
             ManageControls();
 
             numOfQuestions = (int)nudNumberOfQuestions.Minimum;
@@ -52,14 +54,14 @@ namespace FlashCards.Pages.TestPage
         private void cbStarCorrect_CheckedChanged(object sender, EventArgs e)
         {
             toStarCorrectAnswers = cbStarCorrect.Checked;
-            cbUseStarred.Checked = false;
-            cbUseStarred.Enabled = !cbUseStarred.Enabled;
+            //cbUseStarred.Checked = false;
+            //cbUseStarred.Enabled = !cbUseStarred.Enabled;
         }
         private void cbUseStarred_CheckedChanged(object sender, EventArgs e)
         {
-            useOnlyStarredCards = cbUseStarred.Checked;
-            cbStarCorrect.Checked = false;
-            cbStarCorrect.Enabled = !cbStarCorrect.Enabled;
+            useOnlyUnstarredCards = cbUseStarred.Checked;
+            //cbStarCorrect.Checked = false;
+            //cbStarCorrect.Enabled = !cbStarCorrect.Enabled;
             ManageControls();
         }
         private void cbUseTimer_CheckedChanged(object sender, EventArgs e)
@@ -67,7 +69,6 @@ namespace FlashCards.Pages.TestPage
             nudTimeInMinutes.Enabled = !nudTimeInMinutes.Enabled;
             timeInMinutes = cbUseTimer.Checked ? (int)nudTimeInMinutes.Value : 0;
         }
-
 
         private void nudTimeInMinutes_ValueChanged(object sender, EventArgs e)
         {
@@ -77,24 +78,20 @@ namespace FlashCards.Pages.TestPage
         // member functions
         private void ManageControls()
         {
-            int numOfStarredCards = cardsSet.GetStarredCards().Count;
-            if (numOfStarredCards < nudNumberOfQuestions.Minimum)
+            int numOfUnstarredCards = cardsSet.GetUnstarredCards().Count;
+            if (numOfUnstarredCards < nudNumberOfQuestions.Minimum)
             {
                 cbUseStarred.Enabled = false;
             }
             else
             {
                 cbUseStarred.Enabled = true;
-                nudNumberOfQuestions.Maximum = numOfStarredCards;
+                nudNumberOfQuestions.Maximum = numOfUnstarredCards;
             }
             if (!cbUseStarred.Checked)
             {
                 nudNumberOfQuestions.Maximum = cardsSet.Cards.Count;
             }
-        }
-        private void SwitchCheckBoxes()
-        {
-
         }
     }
 }

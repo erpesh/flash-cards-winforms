@@ -78,10 +78,10 @@ namespace FlashCards.TestPage
 
             timer.Stop();
         }
-        public void GenerateTest(int numOfQuestions, bool toStarCorrectAnswers, bool useOnlyStarredCards)
+        public void GenerateTest(int numOfQuestions, bool toStarCorrectAnswers, bool useOnlyUnstarredCards)
         {
             Reset();
-            cardsTest = new CardsTest(cardsSet, numOfQuestions, toStarCorrectAnswers, useOnlyStarredCards);
+            cardsTest = new CardsTest(cardsSet, numOfQuestions, toStarCorrectAnswers, useOnlyUnstarredCards);
 
             // updating listbox
             lstQuestions.Items.Clear();

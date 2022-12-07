@@ -96,9 +96,9 @@
             this.cbUseStarred.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbUseStarred.Location = new System.Drawing.Point(26, 161);
             this.cbUseStarred.Name = "cbUseStarred";
-            this.cbUseStarred.Size = new System.Drawing.Size(226, 32);
+            this.cbUseStarred.Size = new System.Drawing.Size(248, 32);
             this.cbUseStarred.TabIndex = 7;
-            this.cbUseStarred.Text = "Use only starred cards";
+            this.cbUseStarred.Text = "Use only unstarred cards";
             this.cbUseStarred.UseVisualStyleBackColor = true;
             this.cbUseStarred.CheckedChanged += new System.EventHandler(this.cbUseStarred_CheckedChanged);
             // 

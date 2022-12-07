@@ -23,20 +23,20 @@ namespace FlashCards.Models
             CardsSet cardsSet,
             int numOfQuestions,
             bool toStarCorrectAnswers,
-            bool useOnlyStarredCards)
+            bool useOnlyUnstarredCards)
         {
             this.cardsSet = cardsSet;
             this.toStarCorrectAnswers = toStarCorrectAnswers;
 
-            GenerateQuestions(numOfQuestions, useOnlyStarredCards);
+            GenerateQuestions(numOfQuestions, useOnlyUnstarredCards);
         }
 
         // functions
-        private void GenerateQuestions(int numOfQuestions, bool useOnlyStarredCards)
+        private void GenerateQuestions(int numOfQuestions, bool useOnlyUnstarredCards)
         {
             Random rnd = new Random();
-            List<CardItem> cardsForTest = useOnlyStarredCards ?
-                cardsSet.GetStarredCards() : new List<CardItem>(cardsSet.Cards);
+            List<CardItem> cardsForTest = useOnlyUnstarredCards ?
+                cardsSet.GetUnstarredCards() : new List<CardItem>(cardsSet.Cards);
                 
             for (int i = 0; i < numOfQuestions; i++)
             {

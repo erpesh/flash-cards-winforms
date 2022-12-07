@@ -67,7 +67,7 @@ namespace FlashCards
                 testPage1.GenerateTest(
                     ts.NumOfQuestions, 
                     ts.ToStarCorrectAnswers, 
-                    ts.UseOnlyStarredCards);
+                    ts.UseOnlyUnstarredCards);
                 testPage1.BringToFront();
             }
         }

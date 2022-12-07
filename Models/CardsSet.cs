@@ -72,9 +72,9 @@ namespace FlashCards.Models
                 }
             }
         }
-        public List<CardItem> GetStarredCards()
+        public List<CardItem> GetUnstarredCards()
         {
-            return new List<CardItem>(cards.FindAll(item => item.IsStarred));
+            return new List<CardItem>(cards.FindAll(item => !item.IsStarred));
         }
         public void StarCards(List<CardItem> cardsToStar)
         {
