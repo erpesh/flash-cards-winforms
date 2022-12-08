@@ -36,7 +36,8 @@ namespace FlashCards.Models
         {
             Random rnd = new Random();
             List<CardItem> cardsForTest = useOnlyUnstarredCards ?
-                cardsSet.GetUnstarredCards() : new List<CardItem>(cardsSet.Cards);
+                cardsSet.GetUnstarredCards() : 
+                new List<CardItem>(cardsSet.Cards); // creating copy of cardsSet.Cards so RemoveAt couldn't affect actual cardsSet
                 
             for (int i = 0; i < numOfQuestions; i++)
             {
@@ -44,11 +45,9 @@ namespace FlashCards.Models
                 CardItem cardItem = cardsForTest[randomIndex];
                 cardsForTest.RemoveAt(randomIndex);
 
-
                 TestQuestion question = new(cardsSet, cardItem);
                 testQuestions.Add(question);
             }
-            testQuestions = testQuestions.OrderBy(_ => rnd.Next()).ToList();
         }
         public void SubmitTest()
         {

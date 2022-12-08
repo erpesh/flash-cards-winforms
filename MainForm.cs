@@ -9,6 +9,7 @@ namespace FlashCards
         // data
         private const int minValueForTestPage = 4;
         private const int minValueForLearnPage = 2;
+        
         private CardsSet cardsSet;
         private bool isGoBackToSetsList;
         private bool isCardSetDeleted;
@@ -61,7 +62,7 @@ namespace FlashCards
             TestSettings ts = new TestSettings(cardsSet);
             ts.ShowDialog();
 
-            if (ts.IsFormSubmitted)
+            if (ts.IsFormSubmitted) // if user don't close test settings form
             {
                 testPage1.TimeInSeconds = ts.TimeInMinutes * 60;
                 testPage1.GenerateTest(
@@ -77,8 +78,7 @@ namespace FlashCards
             Close();
         }
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
-        {
-            // sets tooltips for disabled buttons
+        {   // sets tooltips for disabled buttons
             if (cardsSet.Cards.Count >= minValueForTestPage) return;
 
             Control ctrl = GetChildAtPoint(e.Location);
@@ -121,10 +121,12 @@ namespace FlashCards
         private void HideToolTipOnButton()
         {
             if (activeToolTip == "") return;
+
             if (activeToolTip == btnLearnPage.Name)
                 ttipNavButton.Hide(btnLearnPage);
             else if (activeToolTip == btnTestPage.Name)
                 ttipNavButton.Hide(btnTestPage);
+
             isToolTipShown = false;
             activeToolTip = "";
         }

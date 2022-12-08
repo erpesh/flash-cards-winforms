@@ -27,6 +27,7 @@ namespace FlashCards.MainPage
 
             InitializeComponent();
 
+            // setting images from resources
             btnEdit.BackgroundImage = Properties.Resources.editIcon;
             btnRemove.BackgroundImage = Properties.Resources.removeIcon;
             btnSave.BackgroundImage = Properties.Resources.tickIcon;
@@ -48,11 +49,13 @@ namespace FlashCards.MainPage
         }
         private void Save_Click(object sender, EventArgs e)
         {
-            if (txtTerm.Text.Contains(cardsSet.Separator) || txtDefinition.Text.Contains(cardsSet.Separator))
+            // checks if user enters cardsSet separator
+            if (mainPage.CheckIfUserEnteredSeparator(txtTerm, txtDefinition))
             {
                 MessageBox.Show("Don't use " + cardsSet.Separator + "symbol");
                 return;
             }
+
             card.Term = txtTerm.Text;
             card.Definition = txtDefinition.Text;
 
@@ -61,30 +64,26 @@ namespace FlashCards.MainPage
             SwitchReadOnly();
             SwitchButtons();
         }
-        private void Term_Change(object sender, EventArgs e)
+        private void TextBox_Change(object sender, EventArgs e)
         {
-            UpdateSaveButton(txtTerm);
-        }
-
-        private void Definition_Change(object sender, EventArgs e)
-        {
-            UpdateSaveButton(txtDefinition);
+            UpdateSaveButton();
         }
 
         // member functions
-        private void SwitchButtons()
+        private void SwitchButtons() // switching edit and save buttons
         {
             btnEdit.Visible = !btnEdit.Visible;
             btnSave.Visible = !btnSave.Visible;
         }
-        private void SwitchReadOnly()
+        private void SwitchReadOnly() // enabling / disabling textboxess
         {
             txtTerm.ReadOnly = !txtTerm.ReadOnly;
             txtDefinition.ReadOnly = !txtDefinition.ReadOnly;
         }
-        private void UpdateSaveButton(TextBox tb)
+        private void UpdateSaveButton()
         {
-            btnSave.Enabled = tb.Text.Length < 100;
+            mainPage.UpdateAddButton(btnSave, txtTerm, txtDefinition);
         }
+
     }
 }

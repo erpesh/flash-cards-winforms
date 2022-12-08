@@ -54,14 +54,10 @@ namespace FlashCards.Pages.TestPage
         private void cbStarCorrect_CheckedChanged(object sender, EventArgs e)
         {
             toStarCorrectAnswers = cbStarCorrect.Checked;
-            //cbUseStarred.Checked = false;
-            //cbUseStarred.Enabled = !cbUseStarred.Enabled;
         }
         private void cbUseStarred_CheckedChanged(object sender, EventArgs e)
         {
-            useOnlyUnstarredCards = cbUseStarred.Checked;
-            //cbStarCorrect.Checked = false;
-            //cbStarCorrect.Enabled = !cbStarCorrect.Enabled;
+            useOnlyUnstarredCards = cbUseUnstarred.Checked;
             ManageControls();
         }
         private void cbUseTimer_CheckedChanged(object sender, EventArgs e)
@@ -80,16 +76,16 @@ namespace FlashCards.Pages.TestPage
         {
             int numOfUnstarredCards = cardsSet.GetUnstarredCards().Count;
             if (numOfUnstarredCards < nudNumberOfQuestions.Minimum)
-            {
-                cbUseStarred.Enabled = false;
+            {   // disabling useStarred checkbox is there is less then minimum
+                cbUseUnstarred.Enabled = false;
             }
             else
-            {
-                cbUseStarred.Enabled = true;
+            {   // enabling useStarred checkbox and sets maximum value to the number of unstarred cards
+                cbUseUnstarred.Enabled = true;
                 nudNumberOfQuestions.Maximum = numOfUnstarredCards;
             }
-            if (!cbUseStarred.Checked)
-            {
+            if (!cbUseUnstarred.Checked)
+            {   // sets maximum questions value to the number of all cards;
                 nudNumberOfQuestions.Maximum = cardsSet.Cards.Count;
             }
         }

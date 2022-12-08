@@ -18,6 +18,7 @@ namespace FlashCards.Models
         private bool isCorrect = false;
 
         // getters setters
+        public int NumberOfAnswers { get { return numberOfAnswers; } }
         public CardItem CardItem { get { return cardItem; } }
         public int CorrectAnswerIndex
         {
@@ -56,12 +57,13 @@ namespace FlashCards.Models
         // functions
         private void GeneratePossibleAnswers()
         {
-            possibleAnswers.Add(cardItem.Definition);
+            possibleAnswers.Add(cardItem.Definition); // adding correct answer to possibleAnswers
 
             for (int i = 0; i < numberOfAnswers - 1; i++)
             {
-                possibleAnswers.Add(cardsSet.GetRandomCardExcept(possibleAnswers));
+                possibleAnswers.Add(cardsSet.GetRandomDefinitionExcept(possibleAnswers));
             }
+            // answer list shuffling
             Random rand = new Random();
             possibleAnswers = possibleAnswers.OrderBy(_ => rand.Next()).ToList();
         }

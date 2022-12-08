@@ -32,7 +32,7 @@
             this.lblNumberOfQuestions = new System.Windows.Forms.Label();
             this.lblFormTitle = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.cbUseStarred = new System.Windows.Forms.CheckBox();
+            this.cbUseUnstarred = new System.Windows.Forms.CheckBox();
             this.cbStarCorrect = new System.Windows.Forms.CheckBox();
             this.cbUseTimer = new System.Windows.Forms.CheckBox();
             this.nudTimeInMinutes = new System.Windows.Forms.NumericUpDown();
@@ -90,17 +90,17 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // cbUseStarred
+            // cbUseUnstarred
             // 
-            this.cbUseStarred.AutoSize = true;
-            this.cbUseStarred.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbUseStarred.Location = new System.Drawing.Point(26, 161);
-            this.cbUseStarred.Name = "cbUseStarred";
-            this.cbUseStarred.Size = new System.Drawing.Size(248, 32);
-            this.cbUseStarred.TabIndex = 7;
-            this.cbUseStarred.Text = "Use only unstarred cards";
-            this.cbUseStarred.UseVisualStyleBackColor = true;
-            this.cbUseStarred.CheckedChanged += new System.EventHandler(this.cbUseStarred_CheckedChanged);
+            this.cbUseUnstarred.AutoSize = true;
+            this.cbUseUnstarred.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbUseUnstarred.Location = new System.Drawing.Point(26, 161);
+            this.cbUseUnstarred.Name = "cbUseUnstarred";
+            this.cbUseUnstarred.Size = new System.Drawing.Size(248, 32);
+            this.cbUseUnstarred.TabIndex = 7;
+            this.cbUseUnstarred.Text = "Use only unstarred cards";
+            this.cbUseUnstarred.UseVisualStyleBackColor = true;
+            this.cbUseUnstarred.CheckedChanged += new System.EventHandler(this.cbUseStarred_CheckedChanged);
             // 
             // cbStarCorrect
             // 
@@ -169,7 +169,7 @@
             this.Controls.Add(this.nudTimeInMinutes);
             this.Controls.Add(this.cbUseTimer);
             this.Controls.Add(this.cbStarCorrect);
-            this.Controls.Add(this.cbUseStarred);
+            this.Controls.Add(this.cbUseUnstarred);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.lblFormTitle);
             this.Controls.Add(this.lblNumberOfQuestions);
@@ -190,7 +190,7 @@
         private Label lblNumberOfQuestions;
         private Label lblFormTitle;
         private Button btnSubmit;
-        private CheckBox cbUseStarred;
+        private CheckBox cbUseUnstarred;
         private CheckBox cbStarCorrect;
         private CheckBox cbUseTimer;
         private NumericUpDown nudTimeInMinutes;

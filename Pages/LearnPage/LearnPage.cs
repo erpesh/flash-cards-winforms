@@ -17,6 +17,7 @@ namespace FlashCards.LearnPage
     {
         // data
         private const int newFontTextLength = 80;
+
         private CardsSet cardsSet;
         private int activeCardIndex;
         private bool isActiveSideIsTerm = true;
@@ -36,6 +37,7 @@ namespace FlashCards.LearnPage
         {
             InitializeComponent();
 
+            // setting icons from resources
             blackStar = Properties.Resources.starIconBlack;
             yellowStar = Properties.Resources.starIconYellow;
             pbLeft.Image = Properties.Resources.chevronLeft;
@@ -46,10 +48,10 @@ namespace FlashCards.LearnPage
         // event functions
         private void LearnPage_KeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyValue == 32) SwitchCardSide();
-            else if (e.KeyValue == 37) LeftPress();
-            else if (e.KeyValue == 39) RightPress();
-            else if (e.KeyValue == 13) ToggleCardStar();
+            if (e.KeyData == Keys.Space) SwitchCardSide();
+            else if (e.KeyData == Keys.Left) ToPreviousCard();
+            else if (e.KeyData == Keys.Right) ToNextCard();
+            else if (e.KeyData == Keys.Enter) ToggleCardStar();
         }
         private void Card_Click(object sender, EventArgs e)
         {
@@ -61,12 +63,12 @@ namespace FlashCards.LearnPage
         }
         private void Left_Click(object sender, EventArgs e)
         {
-            LeftPress();
+            ToPreviousCard();
         }
 
         private void Right_Click(object sender, EventArgs e)
         {
-            RightPress();
+            ToNextCard();
         }
         private void pbInfo_Click(object sender, EventArgs e)
         {
@@ -93,22 +95,19 @@ namespace FlashCards.LearnPage
             {
                 activeCardIndex = cardsSet.Cards.Count - 1;
             }
-            if (isActiveSideIsTerm)
-            {
-                lblText.Text = activeCard.Term;
-            }
-            else
-            {
-                lblText.Text = activeCard.Definition;
-            }
-            // sets smaller font size ifr the text is too long
-            if (lblText.Text.Length > newFontTextLength) lblText.Font = new Font("Segoe UI", 16, FontStyle.Regular);
-            // sets the star
-            pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;
-            // sets card side title
+            // setting card text depending on active side
+            lblText.Text = isActiveSideIsTerm ? activeCard.Term : activeCard.Definition;
             lblCardSide.Text = isActiveSideIsTerm ? "Term" : "Definition";
+
+            // sets smaller font size if the text is too long
+            if (lblText.Text.Length > newFontTextLength) lblText.Font = new Font("Segoe UI", 16, FontStyle.Regular);
+            
+            // sets the star image 
+            pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;
+
+            // sets card side title
         }
-        private void LeftPress()
+        private void ToPreviousCard()
         {
             if (activeCardIndex == 0)
             {
@@ -117,7 +116,7 @@ namespace FlashCards.LearnPage
             else activeCardIndex--;
             UpdateCardDisplay();
         }
-        private void RightPress()
+        private void ToNextCard()
         {
             if (activeCardIndex == cardsSet.Cards.Count - 1)
             {

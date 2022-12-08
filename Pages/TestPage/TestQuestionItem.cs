@@ -16,6 +16,7 @@ namespace FlashCards.TestPage
         // data
         private TestQuestion testQuestion;
         private bool isTestSubmited;
+        private List<Button> buttons;
 
         // getters setters
         public TestQuestion TestQuestion
@@ -29,71 +30,64 @@ namespace FlashCards.TestPage
             }
         }
         public bool IsTestSubmited { set { isTestSubmited = value; } }
+
         // constructor
         public TestQuestionItem()
         {
             InitializeComponent();
+
+            buttons = new List<Button> { btnAnswer1, btnAnswer2, btnAnswer3, btnAnswer4 };
         }
 
         // event functions
         private void btnAnswer_Click(object sender, EventArgs e)
         {
-            int buttonIndex = 0;
-            if (sender == btnAnswer2) buttonIndex = 1;
-            else if (sender == btnAnswer3) buttonIndex = 2;
-            else if (sender == btnAnswer4) buttonIndex = 3;
-
-            HandleAnswerButtonClick(buttonIndex);
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (sender == buttons[i])
+                {
+                    HandleAnswerButtonClick(i);
+                    return;
+                }
+            }
         }
         private void btnAnswer_Hover(object sender, EventArgs e)
-        {
+        {   // sets tooltip for button it's value too long
             Button btn = sender as Button;
             if (btn.Text.Length > 20)
             {
-                toolTip1.Show(AddNewLinesToString(btn.Text), btn, 30000);
+                toolTip1.Show(btn.Text, btn, 30000);
             }
         }
 
         // member functions
-        private void UpdateAnswerButton(Button btn, int index)
-        {
-            btn.Text = testQuestion.PossibleAnswers[index];
-            btn.BackColor = SystemColors.ButtonFace;
+        private void UpdateAnswerButtons()
+        {   // sets text and resets background color for answer buttons
+            for (int i = 0; i < testQuestion.NumberOfAnswers; i++)
+            {
+                buttons[i].Text = testQuestion.PossibleAnswers[i];
+                buttons[i].BackColor = SystemColors.ButtonFace;
+            }
         }
         private void UpdateTestQuestionItem()
         {
             lblTerm.Text = testQuestion.CardItem.Term;
 
-            UpdateAnswerButton(btnAnswer1, 0);
-            UpdateAnswerButton(btnAnswer2, 1);
-            UpdateAnswerButton(btnAnswer3, 2);
-            UpdateAnswerButton(btnAnswer4, 3);
+            UpdateAnswerButtons();
 
             if (isTestSubmited)
             {
-                if (testQuestion.CorrectAnswerIndex == 0) btnAnswer1.BackColor = Color.LightGreen;
-                else if (testQuestion.CorrectAnswerIndex == 1) btnAnswer2.BackColor = Color.LightGreen;
-                else if (testQuestion.CorrectAnswerIndex == 2) btnAnswer3.BackColor = Color.LightGreen;
-                else if (testQuestion.CorrectAnswerIndex == 3) btnAnswer4.BackColor = Color.LightGreen;
+                // highlighting correct answer
+                buttons[testQuestion.CorrectAnswerIndex].BackColor = Color.LightGreen;
                 
+                // highlighting incorrect answer
                 if (testQuestion.IsAnswered && !testQuestion.IsCorrect)
-                {
-                    if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.PaleVioletRed;
-                    else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.PaleVioletRed;
-                    else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.PaleVioletRed;
-                    else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.PaleVioletRed;
-                }
+                    buttons[testQuestion.AnswerIndex].BackColor = Color.PaleVioletRed;
             }
-            else
-            {
-                if (testQuestion.IsAnswered)
-                {
-                    if (testQuestion.AnswerIndex == 0) btnAnswer1.BackColor = Color.LightBlue;
-                    else if (testQuestion.AnswerIndex == 1) btnAnswer2.BackColor = Color.LightBlue;
-                    else if (testQuestion.AnswerIndex == 2) btnAnswer3.BackColor = Color.LightBlue;
-                    else if (testQuestion.AnswerIndex == 3) btnAnswer4.BackColor = Color.LightBlue;
-                }
-            }
+            else if (testQuestion.IsAnswered)
+                // highlighting selected answer
+                buttons[testQuestion.AnswerIndex].BackColor = Color.LightBlue;
+
             // update skipped text
             lblSkipped.Text = isTestSubmited && !testQuestion.IsAnswered ? "Skipped" : "";
         }
@@ -102,13 +96,6 @@ namespace FlashCards.TestPage
             if (buttonIndex == testQuestion.AnswerIndex) buttonIndex = -1;
             testQuestion.AnswerIndex = buttonIndex;
             UpdateTestQuestionItem();
-        }
-        private string AddNewLinesToString(string str)
-        {
-            if (str.Length < 200) return str;
-            var listOfSubstrings = Enumerable.Range(0, str.Length / 200)
-                .Select(i => str.Substring(i * 200, 200));
-            return string.Join("\n", listOfSubstrings);
         }
     }
 }

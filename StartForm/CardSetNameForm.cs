@@ -13,6 +13,8 @@ namespace FlashCards.StartForm
     public partial class CardSetNameForm : Form
     {
         // data
+        private const int minNameLength = 4;
+        private const int maxNameLength = 25;
         private List<string> cardSetsTitles;
         private bool isFormSubmited;
 
@@ -31,9 +33,9 @@ namespace FlashCards.StartForm
         {
             if (cardSetsTitles.Contains(tbCardSetName.Text))
                 lblError.Text = "This name already exists";
-            else if (tbCardSetName.Text.Length < 4)
+            else if (tbCardSetName.Text.Length <= minNameLength)
                 lblError.Text = "This name is too short";
-            else if (tbCardSetName.Text.Length > 25)
+            else if (tbCardSetName.Text.Length >= maxNameLength)
                 lblError.Text = "This name is too long";
             else
             {

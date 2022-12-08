@@ -81,7 +81,7 @@ namespace FlashCards.StartForm
             MainForm mf = new(name);
             mf.ShowDialog();
 
-            if (mf.IsGoBackToSetsList)
+            if (mf.IsGoBackToSetsList) // if user didn't close the main page
             {
                 Show();
 
@@ -90,7 +90,7 @@ namespace FlashCards.StartForm
                 UpdateListOfSets();
                 UpdateDispaly();
             }
-            else Close();
+            else Close(); // if user closed the main page
         }
         private void DeleteCardSet(CardsSet cardsSet)
         {

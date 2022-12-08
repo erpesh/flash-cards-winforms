@@ -69,7 +69,7 @@
             this.txtTerm.ReadOnly = true;
             this.txtTerm.Size = new System.Drawing.Size(349, 34);
             this.txtTerm.TabIndex = 4;
-            this.txtTerm.TextChanged += new System.EventHandler(this.Term_Change);
+            this.txtTerm.TextChanged += new System.EventHandler(this.TextBox_Change);
             // 
             // txtDefinition
             // 
@@ -81,7 +81,7 @@
             this.txtDefinition.ReadOnly = true;
             this.txtDefinition.Size = new System.Drawing.Size(349, 34);
             this.txtDefinition.TabIndex = 5;
-            this.txtDefinition.TextChanged += new System.EventHandler(this.Definition_Change);
+            this.txtDefinition.TextChanged += new System.EventHandler(this.TextBox_Change);
             // 
             // btnSave
             // 

@@ -17,7 +17,7 @@ namespace FlashCards.Models
         public List<CardItem> Cards { get { return cards; } }
 
         // constructor
-        public CardsSet(string cardSetName = "cards.txt")
+        public CardsSet(string cardSetName)
         {
             this.cardSetName = cardSetName;
             this.filePath = "card-sets/" + cardSetName + ".txt";
@@ -60,7 +60,8 @@ namespace FlashCards.Models
             cards.Remove(card);
             WriteToFile();
         }
-        public string GetRandomCardExcept(List<string> exceptions)
+        // gets random definition from card set except except those on the exceptions list
+        public string GetRandomDefinitionExcept(List<string> exceptions)
         {
             Random rnd = new Random();
             while (true)
@@ -76,6 +77,7 @@ namespace FlashCards.Models
         {
             return new List<CardItem>(cards.FindAll(item => !item.IsStarred));
         }
+        // stars cards from cardsToStar list and saves it to file
         public void StarCards(List<CardItem> cardsToStar)
         {
             foreach(CardItem card in cards)

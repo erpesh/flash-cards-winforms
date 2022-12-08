@@ -21,6 +21,8 @@ namespace FlashCards.MainPage
         private bool isToolTipShown;
 
         // getters setters
+        public int MaxTextLength { get { return maxTextLength; } }
+        public int MinTextLength { get { return minTextLength; } }
         public MainForm MainForm
         {
             get { return mainForm; }
@@ -45,16 +47,18 @@ namespace FlashCards.MainPage
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            if (CheckIfUserEnteredSeparator())
+            // if user uses separator
+            if (CheckIfUserEnteredSeparator(txtTerm, txtDefinition))
             {
                 lblError.Text = "Don't use '" + cardsSet.Separator + "' symbol";
                 return;
             }
             else lblError.Text = "";
 
+            // add card to cardsSet
             var card = new CardItem(txtTerm.Text, txtDefinition.Text);
             cardsSet.AddCard(card);
-
+            // add card item to cardsPanel
             CardListItem cardListItem = new CardListItem(this, cardsSet, card);
             cardsPanel.Controls.Add(cardListItem);
 
@@ -74,11 +78,13 @@ namespace FlashCards.MainPage
         }
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateAddButton();
+            UpdateAddButton(btnAdd, txtTerm, txtDefinition);
         }
         private void MainPage_MouseMove(object sender, MouseEventArgs e)
         {
             Control ctrl = GetChildAtPoint(e.Location);
+
+            // setting tooltip on disabled button
             if (ctrl == btnAdd && !isToolTipShown && !btnAdd.Enabled)
             {
                 isToolTipShown = true;
@@ -104,15 +110,15 @@ namespace FlashCards.MainPage
                 cardsPanel.Controls.Add(cardListItem);
             }
         }
-        private void UpdateAddButton()
-        {
+        public void UpdateAddButton(Button btn, TextBox txtTerm, TextBox txtDefinition)
+        { // checks corectness of term and definition lengths
             bool termCondition = txtTerm.Text.Length <= maxTextLength 
                 && txtTerm.Text.Length >= minTextLength;
-            bool definitionCondition = txtDefinition.Text.Length < maxTextLength 
+            bool definitionCondition = txtDefinition.Text.Length <= maxTextLength 
                 && txtDefinition.Text.Length >= minTextLength;
-            btnAdd.Enabled = termCondition && definitionCondition;
+            btn.Enabled = termCondition && definitionCondition;
         }
-        private bool CheckIfUserEnteredSeparator()
+        public bool CheckIfUserEnteredSeparator(TextBox txtTerm, TextBox txtDefinition)
         {
             return txtTerm.Text.Contains(cardsSet.Separator) ||
                 txtDefinition.Text.Contains(cardsSet.Separator);

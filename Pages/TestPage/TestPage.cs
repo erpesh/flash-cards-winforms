@@ -57,12 +57,13 @@ namespace FlashCards.TestPage
         {
             if (timeInSeconds == 0) SubmitTest();
 
-            string timeString = TimeToString();
             timeInSeconds--;
+            string timeString = TimeToString();
             lblTime.Text = timeString;
         }
         private void lstQuestions_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // changing testQuestionItem on changing of selected item in the listBox
             activeQuestionIndex = int.Parse(lstQuestions.GetItemText(lstQuestions.SelectedItem).Trim()) - 1;
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
             NavigationButtonsUpdate();
@@ -108,7 +109,7 @@ namespace FlashCards.TestPage
             SelectListItem();
         }
         private void NavigationButtonsUpdate()
-        {
+        { // changing buttons visibility
             btnPrevQuestion.Visible = activeQuestionIndex != 0;
             btnNextQuestion.Visible = activeQuestionIndex != cardsTest.TestQuestions.Count - 1;
             btnSubmitTest.Visible = !isTestSubmited && activeQuestionIndex == cardsTest.TestQuestions.Count - 1;
