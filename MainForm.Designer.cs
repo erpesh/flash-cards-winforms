@@ -51,22 +51,24 @@
             // 
             // btnMainPage
             // 
+            this.btnMainPage.BackColor = System.Drawing.SystemColors.Control;
             this.btnMainPage.Location = new System.Drawing.Point(402, 12);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(141, 39);
             this.btnMainPage.TabIndex = 1;
             this.btnMainPage.Text = "Main";
-            this.btnMainPage.UseVisualStyleBackColor = true;
+            this.btnMainPage.UseVisualStyleBackColor = false;
             this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // btnLearnPage
             // 
+            this.btnLearnPage.BackColor = System.Drawing.SystemColors.Control;
             this.btnLearnPage.Location = new System.Drawing.Point(559, 12);
             this.btnLearnPage.Name = "btnLearnPage";
             this.btnLearnPage.Size = new System.Drawing.Size(134, 39);
             this.btnLearnPage.TabIndex = 2;
             this.btnLearnPage.Text = "Learn";
-            this.btnLearnPage.UseVisualStyleBackColor = true;
+            this.btnLearnPage.UseVisualStyleBackColor = false;
             this.btnLearnPage.Click += new System.EventHandler(this.btnLearnPage_Click);
             // 
             // mainPage1
@@ -80,12 +82,13 @@
             // 
             // btnTestPage
             // 
+            this.btnTestPage.BackColor = System.Drawing.SystemColors.Control;
             this.btnTestPage.Location = new System.Drawing.Point(708, 12);
             this.btnTestPage.Name = "btnTestPage";
             this.btnTestPage.Size = new System.Drawing.Size(134, 39);
             this.btnTestPage.TabIndex = 4;
             this.btnTestPage.Text = "Test";
-            this.btnTestPage.UseVisualStyleBackColor = true;
+            this.btnTestPage.UseVisualStyleBackColor = false;
             this.btnTestPage.Click += new System.EventHandler(this.btnTestPage_Click);
             // 
             // testPage1

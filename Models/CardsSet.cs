@@ -60,22 +60,18 @@ namespace FlashCards.Models
             cards.Remove(card);
             WriteToFile();
         }
-        // gets random definition from card set except except those on the exceptions list
+        // gets random definition from card set except those on the exceptions list
         public string GetRandomDefinitionExcept(List<string> exceptions)
         {
+            List<string> allDefinitions = cards.Select(item => item.Definition).ToList();
+            List<string> definitionsExcept = allDefinitions.Except(exceptions).ToList();
+
             Random rnd = new Random();
-            while (true)
-            {
-                var index = rnd.Next(0, cards.Count);
-                if (!exceptions.Contains(cards[index].Definition))
-                {
-                    return cards[index].Definition;
-                }
-            }
+            return definitionsExcept[rnd.Next(definitionsExcept.Count)];
         }
         public List<CardItem> GetUnstarredCards()
         {
-            return new List<CardItem>(cards.FindAll(item => !item.IsStarred));
+            return cards.FindAll(item => !item.IsStarred);
         }
         // stars cards from cardsToStar list and saves it to file
         public void StarCards(List<CardItem> cardsToStar)

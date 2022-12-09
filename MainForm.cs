@@ -16,6 +16,7 @@ namespace FlashCards
 
         private bool isToolTipShown;
         private string activeToolTip;
+        private Button activePageButton;
 
         // getters setters
         public CardsSet CardsSet { get { return cardsSet; } }
@@ -26,7 +27,8 @@ namespace FlashCards
         public MainForm(string cardSetName)
         {
             InitializeComponent();
-
+            
+            activePageButton = btnMainPage;
             btnGoBack.BackgroundImage = Properties.Resources.arrowLeft;
             cardsSet = new CardsSet(cardSetName);
             mainPage1.BringToFront();
@@ -39,7 +41,7 @@ namespace FlashCards
         }
 
         // code copied from https://stackoverflow.com/questions/34006951/prevent-button-from-being-focused-by-arrow-key-click
-        // removes button focus on arrow keys pressing
+        // prevents buttons from being focused by arrow keys press
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (!msg.HWnd.Equals(Handle) &&
@@ -52,17 +54,21 @@ namespace FlashCards
         private void btnMainPage_Click(object sender, EventArgs e)
         {
             mainPage1.BringToFront();
+            activePageButton = btnMainPage;
+            UpdateNavButtonsColors();
         }
         private void btnLearnPage_Click(object sender, EventArgs e)
         {
             learnPage1.BringToFront();
+            activePageButton = btnLearnPage;
+            UpdateNavButtonsColors();
         }
         private void btnTestPage_Click(object sender, EventArgs e)
         {
             TestSettings ts = new TestSettings(cardsSet);
             ts.ShowDialog();
 
-            if (ts.IsFormSubmitted) // if user don't close test settings form
+            if (ts.IsFormSubmitted) // if the user doesn't close the test settings form
             {
                 testPage1.TimeInSeconds = ts.TimeInMinutes * 60;
                 testPage1.GenerateTest(
@@ -70,6 +76,8 @@ namespace FlashCards
                     ts.ToStarCorrectAnswers, 
                     ts.UseOnlyUnstarredCards);
                 testPage1.BringToFront();
+                activePageButton = btnTestPage;
+                UpdateNavButtonsColors();
             }
         }
         private void btnGoBack_Click(object sender, EventArgs e)
@@ -87,9 +95,7 @@ namespace FlashCards
             else if (ctrl == btnTestPage && !isToolTipShown && !btnTestPage.Enabled)
                 SetToolTipToButton(btnTestPage, "Card set should consist of " + minValueForTestPage + " or more cards to access Test page");
             else if (ctrl is not Button && isToolTipShown)
-            {
                 HideToolTipOnButton();
-            }
         }
 
         // member functions
@@ -107,10 +113,18 @@ namespace FlashCards
             isCardSetDeleted = true;
             Close();
         }
+        private void UpdateNavButtonsColors()
+        {
+            btnMainPage.BackColor = SystemColors.Control;
+            btnLearnPage.BackColor = SystemColors.Control;
+            btnTestPage.BackColor = SystemColors.Control;
+            activePageButton.BackColor = Color.PaleTurquoise;
+        }
         public void UpdateDisplay()
         {
             btnTestPage.Enabled = cardsSet.Cards.Count >= minValueForTestPage;
             btnLearnPage.Enabled = cardsSet.Cards.Count >= minValueForLearnPage;
+            UpdateNavButtonsColors();
         }
         public void SetToolTipToButton(Button btn, string text)
         {

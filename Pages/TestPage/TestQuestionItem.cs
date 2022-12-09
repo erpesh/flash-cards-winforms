@@ -14,9 +14,10 @@ namespace FlashCards.TestPage
     public partial class TestQuestionItem : UserControl
     {
         // data
+        private const int answerLengthForTooltip = 20;
+        private List<Button> buttons;
         private TestQuestion testQuestion;
         private bool isTestSubmited;
-        private List<Button> buttons;
 
         // getters setters
         public TestQuestion TestQuestion
@@ -54,7 +55,7 @@ namespace FlashCards.TestPage
         private void btnAnswer_Hover(object sender, EventArgs e)
         {   // sets tooltip for button it's value too long
             Button btn = sender as Button;
-            if (btn.Text.Length > 20)
+            if (btn.Text.Length >= answerLengthForTooltip)
             {
                 toolTip1.Show(btn.Text, btn, 30000);
             }
@@ -88,12 +89,14 @@ namespace FlashCards.TestPage
                 // highlighting selected answer
                 buttons[testQuestion.AnswerIndex].BackColor = Color.LightBlue;
 
-            // update skipped text
-            lblSkipped.Text = isTestSubmited && !testQuestion.IsAnswered ? "Skipped" : "";
+            // update question state text
+            lblQuestionState.Text = isTestSubmited ? 
+                !testQuestion.IsAnswered ? "Skipped" : 
+                testQuestion.IsCorrect ? "Correct" : "Incorrect" : "";
         }
         private void HandleAnswerButtonClick(int buttonIndex)
         {
-            if (buttonIndex == testQuestion.AnswerIndex) buttonIndex = -1;
+            if (buttonIndex == testQuestion.AnswerIndex) buttonIndex = -1; // unanswer the question
             testQuestion.AnswerIndex = buttonIndex;
             UpdateTestQuestionItem();
         }
