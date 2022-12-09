@@ -82,5 +82,11 @@ namespace FlashCards.Models
             }
             WriteToFile();
         }
+        public void SwapTermsAndDefinitions()
+        {
+            cards = cards.Select(card => 
+                new CardItem(card.Definition, card.Term, card.IsStarred ? "1" : "0")).ToList();
+            WriteToFile();
+        }
     }
 }

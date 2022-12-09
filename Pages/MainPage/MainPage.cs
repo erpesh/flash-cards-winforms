@@ -66,7 +66,7 @@ namespace FlashCards.MainPage
             txtDefinition.Text = "";
             MainForm.UpdateDisplay();
         }
-        private void MainPage_ControlRemoved(object sender, ControlEventArgs e)
+        private void MainPage_ControlChange(object sender, ControlEventArgs e)
         {
             mainForm.UpdateLearnPage();
             mainForm.UpdateDisplay();
@@ -75,6 +75,11 @@ namespace FlashCards.MainPage
         private void btnDelete_Click(object sender, EventArgs e)
         {
             mainForm.DeleteCardSet();
+        }
+        private void btnSwapTermDef_Click(object sender, EventArgs e)
+        {
+            cardsSet.SwapTermsAndDefinitions();
+            UpdateDisplay();
         }
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -123,5 +128,6 @@ namespace FlashCards.MainPage
             return txtTerm.Text.Contains(cardsSet.Separator) ||
                 txtDefinition.Text.Contains(cardsSet.Separator);
         }
+
     }
 }

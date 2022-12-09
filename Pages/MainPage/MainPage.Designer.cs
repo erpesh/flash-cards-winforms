@@ -39,6 +39,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.ttipAddButton = new System.Windows.Forms.ToolTip(this.components);
             this.lblError = new System.Windows.Forms.Label();
+            this.btnSwapTermDef = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -96,7 +97,8 @@
             this.cardsPanel.Name = "cardsPanel";
             this.cardsPanel.Size = new System.Drawing.Size(383, 452);
             this.cardsPanel.TabIndex = 6;
-            this.cardsPanel.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.MainPage_ControlRemoved);
+            this.cardsPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.MainPage_ControlChange);
+            this.cardsPanel.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.MainPage_ControlChange);
             // 
             // lblCardSetName
             // 
@@ -110,7 +112,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(69, 289);
+            this.btnDelete.Location = new System.Drawing.Point(69, 344);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(334, 44);
             this.btnDelete.TabIndex = 13;
@@ -129,10 +131,21 @@
             this.lblError.TabIndex = 14;
             this.lblError.UseMnemonic = false;
             // 
+            // btnSwapTermDef
+            // 
+            this.btnSwapTermDef.Location = new System.Drawing.Point(69, 282);
+            this.btnSwapTermDef.Name = "btnSwapTermDef";
+            this.btnSwapTermDef.Size = new System.Drawing.Size(334, 44);
+            this.btnSwapTermDef.TabIndex = 15;
+            this.btnSwapTermDef.Text = "SWAP TERMS AND DEFINITIONS";
+            this.btnSwapTermDef.UseVisualStyleBackColor = true;
+            this.btnSwapTermDef.Click += new System.EventHandler(this.btnSwapTermDef_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSwapTermDef);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblCardSetName);
@@ -163,5 +176,6 @@
         private Button btnDelete;
         private ToolTip ttipAddButton;
         private Label lblError;
+        private Button btnSwapTermDef;
     }
 }
