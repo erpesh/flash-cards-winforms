@@ -92,10 +92,10 @@ namespace FlashCards.TestPage
             }
 
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
-            SelectListItem();
+            SelectActiveListItem();
             StartTimer();
         }
-        private void SelectListItem()
+        private void SelectActiveListItem()
         {
             if (lstQuestions.Items.Count > 0 && activeQuestionIndex >= 0)
                 lstQuestions.SelectedIndex = activeQuestionIndex;
@@ -106,10 +106,10 @@ namespace FlashCards.TestPage
             else activeQuestionIndex--;
 
             testQuestionItem.TestQuestion = cardsTest.TestQuestions[activeQuestionIndex];
-            SelectListItem();
+            SelectActiveListItem();
         }
         private void NavigationButtonsUpdate()
-        { // changing buttons visibility
+        {   // changing buttons visibility
             btnPrevQuestion.Visible = activeQuestionIndex != 0;
             btnNextQuestion.Visible = activeQuestionIndex != cardsTest.TestQuestions.Count - 1;
             btnSubmitTest.Visible = !isTestSubmited && activeQuestionIndex == cardsTest.TestQuestions.Count - 1;
@@ -131,7 +131,7 @@ namespace FlashCards.TestPage
             isTestSubmited = true;
             testQuestionItem.IsTestSubmited = true;
             activeQuestionIndex = 0;
-            SelectListItem();
+            SelectActiveListItem();
         }
         private void StartTimer()
         {

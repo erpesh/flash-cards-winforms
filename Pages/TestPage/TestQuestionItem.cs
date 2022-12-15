@@ -43,6 +43,8 @@ namespace FlashCards.TestPage
         // event functions
         private void btnAnswer_Click(object sender, EventArgs e)
         {
+            if (isTestSubmited) return; // prevent function from running if test is submited
+
             for (int i = 0; i < buttons.Count; i++)
             {
                 if (sender == buttons[i])

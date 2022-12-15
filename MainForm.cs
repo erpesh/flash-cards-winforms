@@ -40,7 +40,7 @@ namespace FlashCards
             UpdateDisplay();
         }
 
-        // code copied from https://stackoverflow.com/questions/34006951/prevent-button-from-being-focused-by-arrow-key-click
+        // code copied from https://stackoverflow.com/a/34007030/17384975
         // prevents buttons from being focused by arrow keys press
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -75,6 +75,7 @@ namespace FlashCards
                     ts.NumOfQuestions, 
                     ts.ToStarCorrectAnswers, 
                     ts.UseOnlyUnstarredCards);
+
                 testPage1.BringToFront();
                 activePageButton = btnTestPage;
                 UpdateNavButtonsColors();
@@ -87,7 +88,7 @@ namespace FlashCards
         }
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {   // sets tooltips for disabled buttons
-            if (cardsSet.Cards.Count >= minValueForTestPage) return;
+            if (cardsSet.Cards.Count >= minValueForTestPage) return; // if both buttons are enabled the functions isn't going to run
 
             Control ctrl = GetChildAtPoint(e.Location);
             if (ctrl == btnLearnPage && !isToolTipShown && !btnLearnPage.Enabled)

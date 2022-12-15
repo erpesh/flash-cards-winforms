@@ -8,7 +8,7 @@ namespace FlashCards.Models
         private const char separator = '&';
         private string cardSetName;
         private string filePath;
-        private List<CardItem> cards = new List<CardItem>();
+        private List<CardItem> cards = new();
 
         // getters setters
         public char Separator { get { return separator; } }

@@ -65,7 +65,6 @@ namespace FlashCards.LearnPage
         {
             ToPreviousCard();
         }
-
         private void Right_Click(object sender, EventArgs e)
         {
             ToNextCard();
@@ -104,8 +103,6 @@ namespace FlashCards.LearnPage
             
             // sets the star image 
             pctrStar.Image = activeCard.IsStarred ? yellowStar : blackStar;
-
-            // sets card side title
         }
         private void ToPreviousCard()
         {

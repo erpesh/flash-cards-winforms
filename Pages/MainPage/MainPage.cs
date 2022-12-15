@@ -47,7 +47,7 @@ namespace FlashCards.MainPage
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            // if user uses separator
+            // if user uses separator setting error text
             if (CheckIfUserEnteredSeparator(txtTerm, txtDefinition))
             {
                 lblError.Text = "Don't use '" + cardsSet.Separator + "' symbol";
